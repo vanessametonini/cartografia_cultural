@@ -1,7 +1,6 @@
 import { Command, Positional, Option } from 'nestjs-command';
 import { Injectable } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { identity } from 'rxjs';
 
 @Injectable()
 export class UsersSeed {
