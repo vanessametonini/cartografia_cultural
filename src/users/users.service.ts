@@ -24,6 +24,8 @@ export class UsersService {
   }
 
   async login(loginUserDto: LoginUserDto):Promise<User> {
+    console.log('sr');
+    
     return await this.userModel.findOne({ email: loginUserDto.email });
   }
 
