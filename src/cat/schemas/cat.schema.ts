@@ -5,6 +5,7 @@ export type CatDocument = Cat & Document;
 
 @Schema()
 export class Cat {
+
   @Prop()
   name: string;
 
@@ -15,7 +16,7 @@ export class Cat {
   breed: string;
   // @Prop()
   // id: MongooseSchema.Types.ObjectId;
-  
+
   // @Prop()
   // color: string;
 
@@ -32,4 +33,11 @@ export class Cat {
   // icon: string;
 }
 
-export const CatSchema = SchemaFactory.createForClass(Cat);
+export const CatSchema = SchemaFactory.createForClass(Cat)
+  .set('toJSON', {
+    transform: function (doc, ret, options) {
+      ret.id = ret._id;
+      delete ret._id;
+      delete ret.__v;
+    }
+  });

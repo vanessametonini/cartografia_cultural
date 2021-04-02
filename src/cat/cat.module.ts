@@ -3,12 +3,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CatService } from './cat.service';
 import { CatController } from './cat.controller';
 import { Cat, CatSchema } from './schemas/cat.schema';
-import { CatCommand } from './cat.command';
+import { CatSeed } from './cat.seed';
 
 
 @Module({
   imports: [MongooseModule.forFeature([{ name: Cat.name, schema: CatSchema }])],
   controllers: [CatController],
-  providers: [CatService, CatCommand]
+  providers: [CatService, CatSeed]
 })
 export class CatModule {}

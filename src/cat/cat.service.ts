@@ -10,7 +10,7 @@ export class CatService {
 
   async create(createCatDto: CreateCatDto): Promise<Cat> {
     const createdCat = new this.catModel(createCatDto);
-    return createdCat.save();
+    return (await createdCat.save()).toJSON().id;
   }
 
   async findAll(): Promise<Cat[]> {
