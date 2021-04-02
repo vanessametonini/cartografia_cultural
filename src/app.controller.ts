@@ -1,6 +1,6 @@
 import { Controller, Request, Get, Post, UseGuards, Body } from '@nestjs/common';
 import { AppService } from './app.service';
-import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from './auth/local-auth.guard'
 
 @Controller()
 export class AppController {
@@ -11,7 +11,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(@Request() req) {
     req.user._doc.id = req.user._doc._id;
@@ -19,5 +19,4 @@ export class AppController {
     delete req.user._doc.__v
     return req.user._doc;
   }
-
 }
