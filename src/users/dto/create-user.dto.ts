@@ -9,5 +9,5 @@ export class CreateUserDto {
     ageRange: string;
     education: string;
     avatar: string;
-    // categoryId: number;
+    categoryId: string;
 }
