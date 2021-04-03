@@ -7,109 +7,47 @@ import { FileResponseVm } from './file-response-vm.model'
 import { MulterUtils } from './multer-utils.service';
 import { UploadTypesEnum } from './upload-types.enum';
 
-class DefaultException {
-  statusCode: HttpStatus;
-  message: any;
-  error: string;
-}
-
-const ApiException = () => DefaultException;
+const ApiException = () => class {
+    statusCode: HttpStatus;
+    message: any;
+    error: string;
+};
 
 @Controller('/attachment/files')
 @ApiTags('Attachments')
 export class FilesController {
-    constructor(private filesService: FilesService){}
+    constructor(private filesService: FilesService) { }
 
     @Post('')
     @ApiConsumes('multipart/form-data')
-    @ApiBody({
-      description: 'Attachment Files'
-    })
-    @UseInterceptors(FilesInterceptor('file',+3, MulterUtils.getConfig(UploadTypesEnum.ANY) ))
+    @ApiBody({ description: 'Attachment Files' })
+    @UseInterceptors(FilesInterceptor('file', +3, MulterUtils.getConfig(UploadTypesEnum.ANY)))
     upload(@UploadedFiles() files) {
-        const response = [];
-        files.forEach(file => {
-            const fileReponse = {
-                originalname: file.originalname,
-                encoding: file.encoding,
-                mimetype: file.mimetype,
-                id: file.id,
-                filename: file.filename,
-                metadata: file.metadata,
-                bucketName: file.bucketName,
-                chunkSize: file.chunkSize,
-                size: file.size,
-                md5: file.md5,
-                uploadDate: file.uploadDate,
-                contentType: file.contentType,
-            };
-            response.push(fileReponse);
-        });
-        return response;
+        return files.map(file => file.id);
     }
 
     @Post('images')
     @ApiConsumes('multipart/form-data')
-    @ApiBody({
-      description: 'Attachment Files'
-    })
-    @UseInterceptors(FilesInterceptor('file',+3, MulterUtils.getConfig(UploadTypesEnum.IMAGES) ))
+    @ApiBody({ description: 'Attachment Images' })
+    @UseInterceptors(FilesInterceptor('file', +3, MulterUtils.getConfig(UploadTypesEnum.IMAGES)))
     uploadImages(@UploadedFiles() files) {
-        const response = [];
-        files.forEach(file => {
-            const fileReponse = {
-                originalname: file.originalname,
-                encoding: file.encoding,
-                mimetype: file.mimetype,
-                id: file.id,
-                filename: file.filename,
-                metadata: file.metadata,
-                bucketName: file.bucketName,
-                chunkSize: file.chunkSize,
-                size: file.size,
-                md5: file.md5,
-                uploadDate: file.uploadDate,
-                contentType: file.contentType,
-            };
-            response.push(fileReponse);
-        });
-        return response;
+        return files.map(file => file.id);
     }
 
     @Post('docs')
     @ApiConsumes('multipart/form-data')
-    @ApiBody({
-      description: 'Attachment Files'
-    })
-    @UseInterceptors(FilesInterceptor('file',+3, MulterUtils.getConfig(UploadTypesEnum.DOCS) ))
+    @ApiBody({ description: 'Attachment Docs' })
+    @UseInterceptors(FilesInterceptor('file', +3, MulterUtils.getConfig(UploadTypesEnum.DOCS)))
     uploadDocs(@UploadedFiles() files) {
-        const response = [];
-        files.forEach(file => {
-            const fileReponse = {
-                originalname: file.originalname,
-                encoding: file.encoding,
-                mimetype: file.mimetype,
-                id: file.id,
-                filename: file.filename,
-                metadata: file.metadata,
-                bucketName: file.bucketName,
-                chunkSize: file.chunkSize,
-                size: file.size,
-                md5: file.md5,
-                uploadDate: file.uploadDate,
-                contentType: file.contentType,
-            };
-            response.push(fileReponse);
-        });
-        return response;
+        return files.map(file => file.id);
     }
 
     @Get('info/:id')
     @ApiBadRequestResponse({ type: ApiException })
-    async getFileInfo(@Param('id') id: string): Promise<FileResponseVm> {        
+    async getFileInfo(@Param('id') id: string): Promise<FileResponseVm> {
         const file = await this.filesService.findInfo(id)
         const filestream = await this.filesService.readStream(id)
-        if(!filestream){
+        if (!filestream) {
             throw new HttpException('An error occurred while retrieving file info', HttpStatus.EXPECTATION_FAILED)
         }
         return {
@@ -120,10 +58,10 @@ export class FilesController {
 
     @Get(':id')
     @ApiBadRequestResponse({ type: ApiException })
-    async getFile(@Param('id') id: string, @Res() res) {        
+    async getFile(@Param('id') id: string, @Res() res) {
         const file = await this.filesService.findInfo(id)
         const filestream = await this.filesService.readStream(id)
-        if(!filestream){
+        if (!filestream) {
             throw new HttpException('An error occurred while retrieving file', HttpStatus.EXPECTATION_FAILED)
         }
         res.header('Content-Type', file.contentType);
@@ -133,14 +71,14 @@ export class FilesController {
     @Get('download/:id')
     @ApiBadRequestResponse({ type: ApiException })
     async downloadFile(@Param('id') id: string, @Res() res) {
-        const file = await this.filesService.findInfo(id)        
+        const file = await this.filesService.findInfo(id)
         const filestream = await this.filesService.readStream(id)
-        if(!filestream){
+        if (!filestream) {
             throw new HttpException('An error occurred while retrieving file', HttpStatus.EXPECTATION_FAILED)
-        } 
+        }
         res.header('Content-Type', file.contentType);
         res.header('Content-Disposition', 'attachment; filename=' + file.filename);
-        return filestream.pipe(res) 
+        return filestream.pipe(res)
     }
 
     @Get('delete/:id')
@@ -149,9 +87,9 @@ export class FilesController {
     async deleteFile(@Param('id') id: string): Promise<FileResponseVm> {
         const file = await this.filesService.findInfo(id)
         const filestream = await this.filesService.deleteFile(id)
-        if(!filestream){
+        if (!filestream) {
             throw new HttpException('An error occurred during file deletion', HttpStatus.EXPECTATION_FAILED)
-        }        
+        }
         return {
             message: 'File has been deleted',
             file: file
