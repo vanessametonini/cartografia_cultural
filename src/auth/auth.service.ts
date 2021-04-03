@@ -20,10 +20,6 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { id: user._doc._id };
-    return {
-      access_token: this.jwtService.sign(payload),
-      user: await this.usersService.findOne(payload.id)
-    };
+    return this.jwtService.sign({ id: user._doc._id });
   }
 }
