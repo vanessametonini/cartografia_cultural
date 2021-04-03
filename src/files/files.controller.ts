@@ -1,10 +1,11 @@
 
 import { Post, Get, Param, Res, Controller, UseInterceptors, UseGuards, UploadedFiles, HttpException, HttpStatus } from '@nestjs/common';
 import { ApiCreatedResponse, ApiConsumes, ApiBody, ApiBadRequestResponse, ApiTags } from '@nestjs/swagger';
-// import { ApiException } from '../shared/api-exception.model';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
 import { FileResponseVm } from './file-response-vm.model'
+import { MulterUtils } from './multer-utils.service';
+import { UploadTypesEnum } from './upload-types.enum';
 
 class DefaultException {
   statusCode: HttpStatus;
@@ -24,8 +25,64 @@ export class FilesController {
     @ApiBody({
       description: 'Attachment Files'
     })
-    @UseInterceptors(FilesInterceptor('file'))
+    @UseInterceptors(FilesInterceptor('file',+3, MulterUtils.getConfig(UploadTypesEnum.ANY) ))
     upload(@UploadedFiles() files) {
+        const response = [];
+        files.forEach(file => {
+            const fileReponse = {
+                originalname: file.originalname,
+                encoding: file.encoding,
+                mimetype: file.mimetype,
+                id: file.id,
+                filename: file.filename,
+                metadata: file.metadata,
+                bucketName: file.bucketName,
+                chunkSize: file.chunkSize,
+                size: file.size,
+                md5: file.md5,
+                uploadDate: file.uploadDate,
+                contentType: file.contentType,
+            };
+            response.push(fileReponse);
+        });
+        return response;
+    }
+
+    @Post('images')
+    @ApiConsumes('multipart/form-data')
+    @ApiBody({
+      description: 'Attachment Files'
+    })
+    @UseInterceptors(FilesInterceptor('file',+3, MulterUtils.getConfig(UploadTypesEnum.IMAGES) ))
+    uploadImages(@UploadedFiles() files) {
+        const response = [];
+        files.forEach(file => {
+            const fileReponse = {
+                originalname: file.originalname,
+                encoding: file.encoding,
+                mimetype: file.mimetype,
+                id: file.id,
+                filename: file.filename,
+                metadata: file.metadata,
+                bucketName: file.bucketName,
+                chunkSize: file.chunkSize,
+                size: file.size,
+                md5: file.md5,
+                uploadDate: file.uploadDate,
+                contentType: file.contentType,
+            };
+            response.push(fileReponse);
+        });
+        return response;
+    }
+
+    @Post('docs')
+    @ApiConsumes('multipart/form-data')
+    @ApiBody({
+      description: 'Attachment Files'
+    })
+    @UseInterceptors(FilesInterceptor('file',+3, MulterUtils.getConfig(UploadTypesEnum.DOCS) ))
+    uploadDocs(@UploadedFiles() files) {
         const response = [];
         files.forEach(file => {
             const fileReponse = {
