@@ -17,13 +17,20 @@ export class AppController {
   @Post('auth/login')
   async login(@Request() req) {
     return this.authService.login(req.user)
+    // const user = req.user._doc;
+    // user.id = user._id;
+    // delete user._id;
+    // delete user.__v;
+    // const { password, ...result } = user
+    // return {
+    //   ...(await this.authService.login(req.user)),
+    //   user: result
+    // }
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
-    console.log(req);
-    
     return req.user;
   }
   

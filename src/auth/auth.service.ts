@@ -23,6 +23,7 @@ export class AuthService {
     const payload = { id: user._doc._id };
     return {
       access_token: this.jwtService.sign(payload),
+      user: await this.usersService.findOne(payload.id)
     };
   }
 }
