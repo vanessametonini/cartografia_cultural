@@ -28,7 +28,12 @@
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/swagger": "^4.8.0",
+    "@types/multer-gridfs-storage": "^4.0.1",
+    "class-transformer": "^0.4.0",
+    "mongo-gridfs": "^1.1.0",
     "mongoose": "^5.12.3",
+    "multer-gridfs-storage": "^4.2.0",
     "nestjs-command": "^2.0.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
@@ -36,6 +41,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6",
+    "swagger-ui-express": "^4.1.6",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
