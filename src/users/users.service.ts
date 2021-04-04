@@ -23,8 +23,8 @@ export class UsersService {
     return await this.userModel.findOne({ _id: id });
   }
 
-  async login(loginUserDto: LoginUserDto):Promise<User> {
-    return await this.userModel.findOne({ email: loginUserDto.email });
+  async findByEmail(email: string):Promise<User> {
+    return await this.userModel.findOne({ email });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

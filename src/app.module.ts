@@ -8,8 +8,8 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { ConfigModule } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
-
 
 @Module({
   imports: [
@@ -18,7 +18,12 @@ import configuration from './config/configuration';
       envFilePath: ['.env','.env.development.local','.env.development'],
       isGlobal: true,
     }),
-    MongooseModule.forRoot(configuration().mongourl),
+    MongooseModule.forRootAsync({
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('mongourl'),
+      }),
+      inject: [ConfigService],
+    }),
     CommandModule,
     CategoriesModule,
     UsersModule,

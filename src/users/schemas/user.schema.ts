@@ -4,7 +4,9 @@ import * as mongoose from 'mongoose';
 import { Category } from '../../categories/schemas/category.schema';
 export type UserDocument = User & Document;
 
-@Schema()
+@Schema({
+  writeConcern: {}
+})
 export class User {
   @Prop()
   firstName: string;
@@ -32,14 +34,8 @@ export class User {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
   categoryId: Category;
+
+  comparePassword: Function;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User)
-  .set('toJSON', {
-    transform: function (doc, ret, options) {
-      ret.id = ret._id;
-      delete ret._id;
-      delete ret.__v;
-      delete ret.password;
-    }
-  });
+export const UserSchema = SchemaFactory.createForClass(User);
