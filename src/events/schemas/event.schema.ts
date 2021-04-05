@@ -18,7 +18,10 @@ export class Event {
   imageIds: string[];
   
   @Prop()
-  firstName: string;
+  title: string;
+
+  @Prop()
+  dateTime: Date;
 
 }
 
