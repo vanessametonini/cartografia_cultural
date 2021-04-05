@@ -16,4 +16,8 @@ export class CategoriesService {
   async findAll(): Promise<Category[]> {
     return this.categoryModel.find().exec();
   }
+
+  async remove(id: string): Promise<Category>{
+    return await this.categoryModel.findOneAndDelete({ _id: id }).exec();
+  }
 }

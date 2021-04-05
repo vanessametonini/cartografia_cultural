@@ -6,7 +6,23 @@ import { Category, CategorySchema } from './schemas/category.schema';
 
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Category.name, schema: CategorySchema }])],
+  imports: [
+    MongooseModule.forFeatureAsync([
+      {
+        name: Category.name,
+        useFactory: () => {
+          CategorySchema.set('toJSON', {
+            transform: function (doc, ret, options) {
+              ret.id = ret._id;
+              delete ret._id;
+              delete ret.__v;
+            }
+          });
+          return CategorySchema;
+        },
+      },
+    ])
+  ],
   controllers: [CategoriesController],
   providers: [CategoriesService],
   exports: [CategoriesService],
