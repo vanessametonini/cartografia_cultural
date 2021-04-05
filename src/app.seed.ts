@@ -23,21 +23,14 @@ export class AppSeed {
     })
     async create() {
         await mongoose.connect(this.configService.get<string>('mongourl'));
-        for (const collection of await mongoose.connection.db.listCollections().toArray()) {
+        const db = mongoose.connection.db;
+        for (const collection of await db.listCollections().toArray())
             switch (collection.name) {
-                case 'categories':
-                    await mongoose.connection.db.dropCollection('categories');
-                    break;
-                case 'users':
-                    await mongoose.connection.db.dropCollection('users');
-                    break;
-                case 'pins':
-                    await mongoose.connection.db.dropCollection('pins');
-                    break;
-                default:
-                    console.log(`The ${collection.name} collection was maintained.`);
+                case 'categories': await db.dropCollection('categories'); break;
+                case 'users': await db.dropCollection('users'); break;
+                case 'pins': await db.dropCollection('pins'); break;
+                default: console.log(`The ${collection.name} collection was maintained.`);
             }
-        }
         await mongoose.connection.close();
         const categoriesId = await this.categoriesSeed.create();
         const usersId = await this.usersSeed.create(categoriesId);
