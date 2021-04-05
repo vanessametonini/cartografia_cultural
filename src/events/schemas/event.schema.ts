@@ -21,7 +21,40 @@ export class Event {
   title: string;
 
   @Prop()
-  dateTime: Date;
+  date: Date;
+
+  @Prop()
+  street: string;
+
+  @Prop()
+  neighborhood: string
+
+  @Prop()
+  city: string;
+
+  @Prop()
+  zipcode: number; 
+
+  @Prop()
+  number: number;
+
+  @Prop()
+  ticket: number;
+
+  @Prop()
+  description: string;
+
+  @Prop()
+  facebook: string;
+
+  @Prop()
+  instagram: string;
+
+  @Prop()
+  whatsapp: string;
+
+  @Prop()
+  twitter: string;
 
 }
 
