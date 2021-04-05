@@ -7,6 +7,13 @@ export type UserDocument = User & Document;
   writeConcern: {}
 })
 export class User {
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
+  categoryId: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'fs.files' })
+  avatarId: string;
+
   @Prop()
   firstName: string;
 
@@ -29,13 +36,7 @@ export class User {
   education: string;
 
   @Prop()
-  avatar: string;
-
-  @Prop()
   isAdmin: boolean;
-
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
-  categoryId: string;
 
   comparePassword: Function;
 }

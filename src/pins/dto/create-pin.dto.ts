@@ -1,6 +1,7 @@
 export class CreatePinDto {
     categoryId: string;
     userId: string;
+    imageIds: string[];
     title: string;
     email: string;
     phone: string;

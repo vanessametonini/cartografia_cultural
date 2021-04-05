@@ -45,6 +45,7 @@ export const pins = (categories, users) => {
             ...pin, 
             categoryId: categories[index % categories.length],
             userId: users[index % users.length],
+            imageIds: ['60689bc939f8713cc87acb83', '6068a568b884f04dbc47e976']
         }
     })
 };

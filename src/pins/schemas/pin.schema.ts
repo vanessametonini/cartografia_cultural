@@ -12,6 +12,9 @@ export class Pin {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   userId: string;
 
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'fs.files'}] })
+  imageIds: string[];
+
   @Prop()
   title: string;
 

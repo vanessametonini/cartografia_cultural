@@ -13,6 +13,7 @@ import { CaslModule } from './casl/casl.module';
 import { PinsModule } from './pins/pins.module';
 import configuration from './config/configuration';
 import { SeedsModule } from './seeds/seeds.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { SeedsModule } from './seeds/seeds.module';
     CaslModule,
     PinsModule,
     SeedsModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

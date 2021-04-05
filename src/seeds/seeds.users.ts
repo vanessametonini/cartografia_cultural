@@ -11,7 +11,6 @@ export const users = (categories) => {
             gender: "Masculino",
             ageRange: "Entre 20 e 30 anos",
             education: "Superior completo",
-            avatar: "default.png",
             isAdmin: true,
         },
         {
@@ -22,12 +21,15 @@ export const users = (categories) => {
             gender: "Masculino",
             ageRange: "Entre 20 e 30 anos",
             education: "Superior completo",
-            avatar: "default.png",
             isAdmin: false,
         }
     ]
     return users.map((user, index) => {
-        return { ...user, categoryId: categories[index % categories.length] }
+        return {
+            ...user,
+            categoryId: categories[index % categories.length],
+            avatarId: '60689bc939f8713cc87acb83',
+        }
     })
 };
 
