@@ -18,15 +18,15 @@ export class PinsService {
     return this.pinModel.find().exec();
   }
 
-  async findOne(id: number):Promise<Pin> {
+  async findOne(id: string):Promise<Pin> {
     return await this.pinModel.findOne({ _id: id }); 
   }
 
-  async update(id: number, updatePinDto: UpdatePinDto): Promise<Pin> {
+  async update(id: string, updatePinDto: UpdatePinDto): Promise<Pin> {
     return this.pinModel.findByIdAndUpdate({ _id: id }, updatePinDto).exec();
   }
 
-  async remove(id: number): Promise<Pin> { 
+  async remove(id: string): Promise<Pin> { 
     return await this.pinModel.findOneAndDelete({ _id: id }).exec();
   }
 }

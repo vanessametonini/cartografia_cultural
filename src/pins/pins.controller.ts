@@ -19,16 +19,16 @@ export class PinsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.pinsService.findOne(+id);
+    return this.pinsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePinDto: UpdatePinDto) {
-    return this.pinsService.update(+id, updatePinDto);
+    return this.pinsService.update(id, updatePinDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.pinsService.remove(+id);
+    return this.pinsService.remove(id);
   }
 }

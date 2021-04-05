@@ -6,6 +6,7 @@ import { PinsSeed } from './seeds.pins';
 import * as mongoose from 'mongoose';
 import { ConfigService } from '@nestjs/config';
 import { EventsSeed } from './seeds.events';
+import { TopicsSeed } from './seeds.topics';
 
 
 @Injectable()
@@ -16,6 +17,7 @@ export class AppSeed {
         private readonly usersSeed: UsersSeed,
         private readonly pinsSeed: PinsSeed,
         private readonly eventsSeed: EventsSeed,
+        private readonly topicsSeed: TopicsSeed,
     ) { }
 
     @Command({
@@ -32,6 +34,7 @@ export class AppSeed {
                 case 'users': await db.dropCollection('users'); break;
                 case 'pins': await db.dropCollection('pins'); break;
                 case 'events': await db.dropCollection('events'); break;
+                case 'topics': await db.dropCollection('topics'); break;
                 default: console.log(`The ${collection.name} collection was maintained.`);
             }
         await mongoose.connection.close();
@@ -39,5 +42,6 @@ export class AppSeed {
         const usersId = await this.usersSeed.create(categoriesId);
         const pinsId = await this.pinsSeed.create(categoriesId, usersId);
         const eventsId = await this.eventsSeed.create(categoriesId, usersId);
+        const topicsId = await this.topicsSeed.create(categoriesId, usersId);
     }
 }

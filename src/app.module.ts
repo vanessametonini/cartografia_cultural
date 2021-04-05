@@ -14,6 +14,7 @@ import { PinsModule } from './pins/pins.module';
 import configuration from './config/configuration';
 import { SeedsModule } from './seeds/seeds.module';
 import { EventsModule } from './events/events.module';
+import { TopicsModule } from './topics/topics.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { EventsModule } from './events/events.module';
     PinsModule,
     SeedsModule,
     EventsModule,
+    TopicsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

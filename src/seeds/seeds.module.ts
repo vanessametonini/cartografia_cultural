@@ -10,6 +10,8 @@ import { CategoriesModule } from '../categories/categories.module';
 import { UsersModule } from '../users/users.module';
 import { PinsModule } from '../pins/pins.module';
 import { EventsModule } from '../events/events.module';
+import { TopicsModule } from 'src/topics/topics.module';
+import { TopicsSeed } from './seeds.topics';
 
 @Module({
     imports: [
@@ -17,6 +19,7 @@ import { EventsModule } from '../events/events.module';
         UsersModule,
         PinsModule,
         EventsModule,
+        TopicsModule
     ],
     providers: [
         AppSeed,
@@ -24,6 +27,7 @@ import { EventsModule } from '../events/events.module';
         UsersSeed,
         PinsSeed,
         EventsSeed,
+        TopicsSeed
     ],
 })
 export class SeedsModule { }
