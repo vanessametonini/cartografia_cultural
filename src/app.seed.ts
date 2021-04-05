@@ -23,8 +23,7 @@ export class AppSeed {
     })
     async create() {
         await mongoose.connect(this.configService.get<string>('mongourl'));
-        const collections = await mongoose.connection.db.listCollections().toArray();
-        for (const collection of collections) {
+        for (const collection of await mongoose.connection.db.listCollections().toArray()) {
             switch (collection.name) {
                 case 'categories':
                     await mongoose.connection.db.dropCollection('categories');
