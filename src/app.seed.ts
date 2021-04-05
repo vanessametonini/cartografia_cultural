@@ -4,6 +4,7 @@ import { CategoriesSeed } from './categories/categories.seed';
 import { UsersSeed } from './users/users.seed';
 import { PinsSeed } from './pins/pins.seed';
 import * as mongoose from 'mongoose';
+import { ConfigService } from '@nestjs/config';
 
 
 @Injectable()
@@ -12,6 +13,7 @@ export class AppSeed {
         private readonly categoriesSeed: CategoriesSeed,
         private readonly usersSeed: UsersSeed,
         private readonly pinsSeed: PinsSeed,
+        private readonly configService: ConfigService,
     ) { }
 
     @Command({
@@ -20,7 +22,7 @@ export class AppSeed {
         autoExit: true
     })
     async create() {
-        await mongoose.connect('mongodb+srv://root:VMEcPZMp2bWRcO2H@gettingstarted-nd9xn.mongodb.net/test?retryWrites=true&w=majority');
+        await mongoose.connect(this.configService.get<string>('mongourl'));
         const collections = await mongoose.connection.db.listCollections().toArray();
         for (const collection of collections) {
             switch (collection.name) {
