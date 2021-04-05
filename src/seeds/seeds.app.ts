@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { EventsSeed } from './seeds.events';
 import { TopicsSeed } from './seeds.topics';
 import { SupportsSeed } from './seeds.supports';
+import { RepliesSeed } from './seeds.replies';
 
 
 @Injectable()
@@ -20,6 +21,8 @@ export class AppSeed {
         private readonly eventsSeed: EventsSeed,
         private readonly topicsSeed: TopicsSeed,
         private readonly supportsSeed: SupportsSeed,
+        private readonly repliesSeed: RepliesSeed,
+
     ) { }
 
     @Command({
@@ -43,10 +46,10 @@ export class AppSeed {
         await mongoose.connection.close();
         const categoriesId = await this.categoriesSeed.create();
         const usersId = await this.usersSeed.create(categoriesId);
-        const pinsId = await this.pinsSeed.create(categoriesId, usersId);
-        const eventsId = await this.eventsSeed.create(categoriesId, usersId);
+        await this.pinsSeed.create(categoriesId, usersId);
+        await this.eventsSeed.create(categoriesId, usersId);
         const topicsId = await this.topicsSeed.create(categoriesId, usersId);
-        const supportsId = await this.supportsSeed.create(topicsId, usersId);
-
+        await this.supportsSeed.create(topicsId, usersId);
+        const repliesId = await this.repliesSeed.create(categoriesId, usersId);
     }
 }

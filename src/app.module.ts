@@ -16,6 +16,7 @@ import { SeedsModule } from './seeds/seeds.module';
 import { EventsModule } from './events/events.module';
 import { TopicsModule } from './topics/topics.module';
 import { SupportsModule } from './supports/supports.module';
+import { RepliesModule } from './replies/replies.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { SupportsModule } from './supports/supports.module';
     EventsModule,
     TopicsModule,
     SupportsModule,
+    RepliesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -14,6 +14,8 @@ import { TopicsModule } from 'src/topics/topics.module';
 import { TopicsSeed } from './seeds.topics';
 import { SupportsModule } from 'src/supports/supports.module';
 import { PinsSeed } from './seeds.pins';
+import { RepliesModule } from 'src/replies/replies.module';
+import { RepliesSeed } from './seeds.replies';
 
 @Module({
     imports: [
@@ -22,7 +24,8 @@ import { PinsSeed } from './seeds.pins';
         PinsModule,
         EventsModule,
         TopicsModule,
-        SupportsModule
+        SupportsModule,
+        RepliesModule
     ],
     providers: [
         AppSeed,
@@ -31,7 +34,8 @@ import { PinsSeed } from './seeds.pins';
         PinsSeed,
         EventsSeed,
         TopicsSeed,
-        SupportsSeed
+        SupportsSeed,
+        RepliesSeed
     ],
 })
 export class SeedsModule { }
