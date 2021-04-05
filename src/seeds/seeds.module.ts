@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppSeed } from './seeds.app';
 import { CategoriesSeed } from './seeds.categories';
 import { UsersSeed } from './seeds.users';
-import { PinsSeed } from './seeds.pins';
+import { SupportsSeed } from './seeds.supports';
 import { EventsSeed } from './seeds.events';
 
 
@@ -12,6 +12,8 @@ import { PinsModule } from '../pins/pins.module';
 import { EventsModule } from '../events/events.module';
 import { TopicsModule } from 'src/topics/topics.module';
 import { TopicsSeed } from './seeds.topics';
+import { SupportsModule } from 'src/supports/supports.module';
+import { PinsSeed } from './seeds.pins';
 
 @Module({
     imports: [
@@ -19,7 +21,8 @@ import { TopicsSeed } from './seeds.topics';
         UsersModule,
         PinsModule,
         EventsModule,
-        TopicsModule
+        TopicsModule,
+        SupportsModule
     ],
     providers: [
         AppSeed,
@@ -27,7 +30,8 @@ import { TopicsSeed } from './seeds.topics';
         UsersSeed,
         PinsSeed,
         EventsSeed,
-        TopicsSeed
+        TopicsSeed,
+        SupportsSeed
     ],
 })
 export class SeedsModule { }

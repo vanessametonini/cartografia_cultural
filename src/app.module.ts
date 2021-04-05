@@ -15,6 +15,7 @@ import configuration from './config/configuration';
 import { SeedsModule } from './seeds/seeds.module';
 import { EventsModule } from './events/events.module';
 import { TopicsModule } from './topics/topics.module';
+import { SupportsModule } from './supports/supports.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { TopicsModule } from './topics/topics.module';
     SeedsModule,
     EventsModule,
     TopicsModule,
+    SupportsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
