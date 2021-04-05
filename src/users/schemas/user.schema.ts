@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import { Category } from '../../categories/schemas/category.schema';
 export type UserDocument = User & Document;
 
 @Schema({
@@ -32,8 +31,11 @@ export class User {
   @Prop()
   avatar: string;
 
+  @Prop()
+  isAdmin: boolean;
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
-  categoryId: Category;
+  categoryId: string;
 
   comparePassword: Function;
 }

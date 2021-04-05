@@ -43,6 +43,6 @@ import * as bcrypt from 'bcrypt';
   ],
   controllers: [UsersController],
   providers: [UsersService, UsersSeed],
-  exports: [UsersService],
+  exports: [UsersService, UsersSeed],
 })
 export class UsersModule { }

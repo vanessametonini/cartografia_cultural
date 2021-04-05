@@ -9,7 +9,10 @@ import { AuthModule } from './auth/auth.module';
 import { FilesModule } from './files/files.module';
 import { ConfigModule } from '@nestjs/config';
 import { ConfigService } from '@nestjs/config';
+import { CaslModule } from './casl/casl.module';
+import { PinsModule } from './pins/pins.module';
 import configuration from './config/configuration';
+import { AppSeed } from './app.seed';
 
 @Module({
   imports: [
@@ -34,8 +37,10 @@ import configuration from './config/configuration';
     UsersModule,
     AuthModule,
     FilesModule,
+    CaslModule,
+    PinsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppSeed, AppService],
 })
 export class AppModule { }

@@ -9,6 +9,7 @@ import { CategoriesSeed } from './categories.seed';
 @Module({
   imports: [MongooseModule.forFeature([{ name: Category.name, schema: CategorySchema }])],
   controllers: [CategoriesController],
-  providers: [CategoriesService, CategoriesSeed]
+  providers: [CategoriesService, CategoriesSeed],
+  exports: [CategoriesService, CategoriesSeed],
 })
 export class CategoriesModule {}
