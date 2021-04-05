@@ -10,6 +10,7 @@ import { TopicsSeed } from './seeds.topics';
 import { SupportsSeed } from './seeds.supports';
 import { RepliesSeed } from './seeds.replies';
 import { LikesSeed } from './seeds.likes';
+import { RejoindersSeed } from './seeds.rejoinders';
 
 
 @Injectable()
@@ -24,6 +25,8 @@ export class AppSeed {
         private readonly supportsSeed: SupportsSeed,
         private readonly repliesSeed: RepliesSeed,
         private readonly likesSeed: LikesSeed,
+        private readonly rejoindersSeed: RejoindersSeed,
+
     ) { }
 
     @Command({
@@ -44,6 +47,7 @@ export class AppSeed {
                 case 'supports': await db.dropCollection('supports'); break;
                 case 'replies': await db.dropCollection('replies'); break;
                 case 'likes': await db.dropCollection('likes'); break;
+                case 'rejoinders': await db.dropCollection('rejoinders'); break;
                 default: console.log(`The ${collection.name} collection was maintained.`);
             }
         await mongoose.connection.close();
@@ -55,6 +59,8 @@ export class AppSeed {
         await this.supportsSeed.create(topicsId, usersId);
         const repliesId = await this.repliesSeed.create(categoriesId, usersId);
         await this.likesSeed.create(topicsId, repliesId, usersId);
+        await this.rejoindersSeed.create(topicsId, repliesId, usersId);
+
 
     }
 }

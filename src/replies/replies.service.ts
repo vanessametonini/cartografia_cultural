@@ -12,8 +12,8 @@ export class RepliesService {
   ) { }
 
   async create(createReplyDto: CreateReplyDto): Promise<Reply> {
-    const replySupport = new this.replyModel(createReplyDto);
-    return (await replySupport.save()).toJSON().id;
+    const createdReply = new this.replyModel(createReplyDto);
+    return (await createdReply.save()).toJSON().id;
   }
 
   findAll(): Promise<Reply[]> {

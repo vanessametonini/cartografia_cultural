@@ -17,6 +17,7 @@ import { TopicsModule } from './topics/topics.module';
 import { SupportsModule } from './supports/supports.module';
 import { RepliesModule } from './replies/replies.module';
 import { LikesModule } from './likes/likes.module';
+import { RejoindersModule } from './rejoinders/rejoinders.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { LikesModule } from './likes/likes.module';
     SupportsModule,
     RepliesModule,
     LikesModule,
+    RejoindersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

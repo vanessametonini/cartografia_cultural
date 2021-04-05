@@ -17,6 +17,8 @@ import { RepliesSeed } from './seeds.replies';
 import { CommandModule } from 'nestjs-command';
 import { LikesModule } from 'src/likes/likes.module';
 import { LikesSeed } from './seeds.likes';
+import { RejoindersModule } from 'src/rejoinders/rejoinders.module';
+import { RejoindersSeed } from './seeds.rejoinders';
 
 @Module({
     imports: [
@@ -28,7 +30,8 @@ import { LikesSeed } from './seeds.likes';
         TopicsModule,
         SupportsModule,
         RepliesModule,
-        LikesModule
+        LikesModule,
+        RejoindersModule
     ],
     providers: [
         AppSeed,
@@ -39,7 +42,8 @@ import { LikesSeed } from './seeds.likes';
         TopicsSeed,
         SupportsSeed,
         RepliesSeed,
-        LikesSeed
+        LikesSeed,
+        RejoindersSeed
     ],
 })
 export class SeedsModule { }
