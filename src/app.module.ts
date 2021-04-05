@@ -19,7 +19,7 @@ import { RepliesModule } from './replies/replies.module';
 import { LikesModule } from './likes/likes.module';
 import { RejoindersModule } from './rejoinders/rejoinders.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'node:path';
+import { join } from 'path';
 
 @Module({
   imports: [
