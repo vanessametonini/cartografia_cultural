@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CategoriesService } from './categories.service';
+import { CategoriesService } from '../categories/categories.service';
 
 export const categories = [
     {

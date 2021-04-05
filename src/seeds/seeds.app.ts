@@ -1,8 +1,8 @@
 import { Command } from 'nestjs-command';
 import { Injectable } from '@nestjs/common';
-import { CategoriesSeed } from './categories/categories.seed';
-import { UsersSeed } from './users/users.seed';
-import { PinsSeed } from './pins/pins.seed';
+import { CategoriesSeed } from './seeds.categories';
+import { UsersSeed } from './seeds.users';
+import { PinsSeed } from './seeds.pins';
 import * as mongoose from 'mongoose';
 import { ConfigService } from '@nestjs/config';
 

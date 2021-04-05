@@ -12,7 +12,7 @@ import { ConfigService } from '@nestjs/config';
 import { CaslModule } from './casl/casl.module';
 import { PinsModule } from './pins/pins.module';
 import configuration from './config/configuration';
-import { AppSeed } from './app.seed';
+import { SeedsModule } from './seeds/seeds.module';
 
 @Module({
   imports: [
@@ -39,8 +39,9 @@ import { AppSeed } from './app.seed';
     FilesModule,
     CaslModule,
     PinsModule,
+    SeedsModule,
   ],
   controllers: [AppController],
-  providers: [AppSeed, AppService],
+  providers: [AppService],
 })
 export class AppModule { }

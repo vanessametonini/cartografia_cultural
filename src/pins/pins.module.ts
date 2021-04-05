@@ -3,7 +3,6 @@ import { PinsService } from './pins.service';
 import { PinsController } from './pins.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Pin, PinSchema } from './schemas/pin.schema';
-import { PinsSeed } from './pins.seed'
 
 @Module({
   imports: [
@@ -24,7 +23,7 @@ import { PinsSeed } from './pins.seed'
     ])
   ],
   controllers: [PinsController],
-  providers: [PinsService, PinsSeed],
-  exports: [PinsService, PinsSeed]
+  providers: [PinsService],
+  exports: [PinsService]
 }) 
 export class PinsModule {}

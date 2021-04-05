@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { users } from 'src/users/users.seed';
-import { PinsService } from './pins.service';
+import { PinsService } from '../pins/pins.service';
 
 export const pins = (categories, users) => {
     const pins = [
