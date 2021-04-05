@@ -15,6 +15,8 @@ import { PinsSeed } from './seeds.pins';
 import { RepliesModule } from 'src/replies/replies.module';
 import { RepliesSeed } from './seeds.replies';
 import { CommandModule } from 'nestjs-command';
+import { LikesModule } from 'src/likes/likes.module';
+import { LikesSeed } from './seeds.likes';
 
 @Module({
     imports: [
@@ -25,7 +27,8 @@ import { CommandModule } from 'nestjs-command';
         EventsModule,
         TopicsModule,
         SupportsModule,
-        RepliesModule
+        RepliesModule,
+        LikesModule
     ],
     providers: [
         AppSeed,
@@ -35,7 +38,8 @@ import { CommandModule } from 'nestjs-command';
         EventsSeed,
         TopicsSeed,
         SupportsSeed,
-        RepliesSeed
+        RepliesSeed,
+        LikesSeed
     ],
 })
 export class SeedsModule { }

@@ -16,6 +16,7 @@ import { EventsModule } from './events/events.module';
 import { TopicsModule } from './topics/topics.module';
 import { SupportsModule } from './supports/supports.module';
 import { RepliesModule } from './replies/replies.module';
+import { LikesModule } from './likes/likes.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { RepliesModule } from './replies/replies.module';
     TopicsModule,
     SupportsModule,
     RepliesModule,
+    LikesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
