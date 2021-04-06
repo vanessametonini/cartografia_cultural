@@ -6,14 +6,13 @@ export class CreatePinDto {
     email: string;
     phone: string;
     street: string;
-    number: string;
+    number: number;
     neighborhood: string;
     city: string;
-    zipcode: string;
+    zipcode: number;
     description: string;
     lat: number;
     long: number;
-    image: string;
     facebook: string;
     instagram: string;
     twitter: string;

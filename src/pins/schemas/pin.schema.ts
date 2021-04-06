@@ -28,7 +28,7 @@ export class Pin {
   street: string;
   
   @Prop()
-  number: string;
+  number: number;
   
   @Prop()
   neighborhood: string;
@@ -37,7 +37,7 @@ export class Pin {
   city: string;
   
   @Prop()
-  zipcode: string;
+  zipcode: number;
   
   @Prop()
   description: string;
@@ -47,9 +47,6 @@ export class Pin {
   
   @Prop()
   long: number;
-  
-  @Prop()
-  image: string;
   
   @Prop()
   facebook: string;

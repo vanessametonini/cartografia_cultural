@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { PinsService } from './pins.service';
 import { PinsController } from './pins.controller';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -6,6 +6,7 @@ import { Pin, PinSchema } from './schemas/pin.schema';
 
 @Module({
   imports: [
+    HttpModule,
     MongooseModule.forFeatureAsync([
       {
         name: Pin.name,

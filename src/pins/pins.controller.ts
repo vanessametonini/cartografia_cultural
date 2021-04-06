@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PinsService } from './pins.service';
 import { CreatePinDto } from './dto/create-pin.dto';
 import { UpdatePinDto } from './dto/update-pin.dto';
+import { CreatelocationDto } from './dto/create-location.dto';
 
 @Controller('pins')
 export class PinsController {
@@ -15,6 +16,11 @@ export class PinsController {
   @Get()
   findAll() {
     return this.pinsService.findAll();
+  }
+
+  @Get('location')
+  getlocation(@Body() createlocationDto: CreatelocationDto ) {
+    return this.pinsService.getLocation(createlocationDto);
   }
 
   @Get(':id')
