@@ -4,7 +4,7 @@ export class CreatePinDto {
     imageIds: string[];
     title: string;
     email: string;
-    phone: string;
+    phone: number;
     street: string;
     number: number;
     neighborhood: string;

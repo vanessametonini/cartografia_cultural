@@ -22,7 +22,7 @@ export class Pin {
   email: string;
   
   @Prop()
-  phone: string;
+  phone: number;
   
   @Prop()
   street: string;

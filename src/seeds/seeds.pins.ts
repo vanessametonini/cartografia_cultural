@@ -6,7 +6,7 @@ export const pins = (categories, users) => {
         {
             title: 'Brava',
             email: 'brava@email.com',
-            phone: '(67) 3253-3795',
+            phone: 6732533795,
             street: 'Av Calógeras',
             number: 3100,
             neighborhood: 'Centro',
@@ -23,7 +23,7 @@ export const pins = (categories, users) => {
           {
             title: 'Casa Colonial',
             email: 'casacolonial@email.com',
-            phone: '(67) 3383-3207',
+            phone: 6333833207,
             street: 'Av. Afonso Pena',
             number: 3997,
             neighborhood: 'Centro',
