@@ -3,4 +3,5 @@ export class CreateRejoinderDto {
     topicId: string;
     replyId: string;
     content: string;
+    createdAt: Date;
 }

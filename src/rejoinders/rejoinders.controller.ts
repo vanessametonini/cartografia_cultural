@@ -22,6 +22,11 @@ export class RejoindersController {
     return this.rejoindersService.findOne(id);
   }
 
+  @Get('topic/:id')
+  findByTopicId(@Param('id') id: string) {
+    return this.rejoindersService.findByTopicId(id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRejoinderDto: UpdateRejoinderDto) {
     return this.rejoindersService.update(id, updateRejoinderDto);

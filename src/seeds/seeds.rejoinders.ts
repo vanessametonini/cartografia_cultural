@@ -12,6 +12,7 @@ export const rejoinders = (topics, replies, users) => {
             replyId: replies[index % replies.length],
             topicId: topics[index % topics.length],
             userId: users[index % users.length],
+            createdAt: new Date()
         }
     })
 };

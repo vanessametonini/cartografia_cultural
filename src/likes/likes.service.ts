@@ -24,6 +24,10 @@ export class LikesService {
     return await this.likeModel.findOne({ _id: id });
   }
 
+  async finByTopicId(id: string): Promise<Like[]> {
+    return await this.likeModel.find({ topicId: id });
+  }
+
   async update(id: string, updateLikeDto: UpdateLikeDto): Promise<Like> {
     return this.likeModel.findByIdAndUpdate({ _id: id }, updateLikeDto).exec();
   }

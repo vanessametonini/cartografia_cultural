@@ -22,6 +22,11 @@ export class LikesController {
     return this.likesService.findOne(id);
   }
 
+  @Get('topic/:id')
+  findByTopicId(@Param('id') id: string) {
+    return this.likesService.finByTopicId(id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateLikeDto: UpdateLikeDto) {
     return this.likesService.update(id, updateLikeDto);

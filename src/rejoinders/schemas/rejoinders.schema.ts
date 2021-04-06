@@ -19,6 +19,9 @@ export class Rejoinder {
     @Prop()
     content: string;
 
+    @Prop()
+    createdAt: Date;
+
 }
 
 export const RejoinderSchema = SchemaFactory.createForClass(Rejoinder);

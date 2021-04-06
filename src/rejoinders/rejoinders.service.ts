@@ -25,6 +25,10 @@ export class RejoindersService {
     return await this.rejoinderModel.findOne({ _id: id });
   }
 
+  async findByTopicId(id: string): Promise<Rejoinder[]> {
+    return await this.rejoinderModel.find({ topicId: id });
+  }
+
   async update(id: string, updateRejoinderDto: UpdateRejoinderDto): Promise<Rejoinder> {
     return this.rejoinderModel.findByIdAndUpdate({ _id: id }, updateRejoinderDto).exec();
 
