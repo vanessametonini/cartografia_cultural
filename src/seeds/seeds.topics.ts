@@ -5,18 +5,18 @@ export const topics = (categories, users) => {
     const topics = [
         {
             title: "Dance Fest 1",
-            positiveSupports: 170,
-            negativeSupports: 65,
-            numberOfReplies: 2,
+            positiveSupports: 0,
+            negativeSupports: 0,
+            numberOfReplies: 0,
             content: "pula fogueira Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográplesmente uma simulação de texto da indústria tipográfica ede impressos,",
             views: 0,
             createdAt: new Date()
           },
           {
             title: "Dance Fest 2",
-            positiveSupports: 170,
-            negativeSupports: 65,
-            numberOfReplies: 2,
+            positiveSupports: 0,
+            negativeSupports: 0,
+            numberOfReplies: 0,
             content: "pula fogueira Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográplesmente uma simulação de texto da indústria tipográfica ede impressos,",
             views: 0,
             createdAt: new Date()

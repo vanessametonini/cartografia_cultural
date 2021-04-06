@@ -3,9 +3,13 @@ import { SupportsService } from './supports.service';
 import { SupportsController } from './supports.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Support, SupportSchema } from './schemas/support.schema';
+import { TopicsService } from '../topics/topics.service';
+import { TopicsModule } from '../topics/topics.module';
+
 
 @Module({
   imports: [
+    TopicsModule,
     MongooseModule.forFeatureAsync([
       {
         name: Support.name,

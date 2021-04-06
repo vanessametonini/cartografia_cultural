@@ -17,6 +17,9 @@ export class Reply {
   content: string;
 
   @Prop()
+  createdAt: Date;
+
+  @Prop()
   numberOfLikes: number;
   
 }

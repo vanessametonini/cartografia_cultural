@@ -5,35 +5,43 @@ export const replies = (topics, users) => {
     const replies = [
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 1,
+            numberOfLikes: 0,
+            createdAt: new Date()
         },
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 2,
+            numberOfLikes: 0,
+            createdAt: new Date()
         },
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 3,
+            numberOfLikes: 0,
+            createdAt: new Date()
         },
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 4,
+            numberOfLikes: 0,
+            createdAt: new Date()
         },
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 1,
+            numberOfLikes: 0,
+            createdAt: new Date()
         },
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 2,
+            numberOfLikes: 0,
+            createdAt: new Date()
         },
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 3,
+            numberOfLikes: 0,
+            createdAt: new Date()
         },
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
-            numberOfLikes: 4,
+            numberOfLikes: 0,
+            createdAt: new Date()
         }
     ]
     return replies.map((support, index) => {

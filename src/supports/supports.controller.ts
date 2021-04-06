@@ -17,6 +17,11 @@ export class SupportsController {
     return this.supportsService.findAll();
   }
 
+  @Get('topics/:id')
+  findByTopicId(@Param('id') id: string) {
+    return this.supportsService.findByTopicId(id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.supportsService.findOne(id);

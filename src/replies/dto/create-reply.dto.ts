@@ -3,4 +3,5 @@ export class CreateReplyDto {
     topicId: string;
     content: string;
     numberOfLikes: number;
+    createdAt: Date;
 }
