@@ -20,6 +20,11 @@ export class AuthService {
   }
 
   async login(user: any) {
-    return this.jwtService.sign({ id: user._doc._id });
+    const User = await this.usersService.findOne(user._doc._id);
+    return {
+      token: this.jwtService.sign({ id: user._doc._id }),
+      user: User
+    }
+    
   }
 }
