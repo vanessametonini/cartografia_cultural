@@ -9,7 +9,8 @@ export const topics = (categories, users) => {
             negativeSupports: 65,
             numberOfReplies: 2,
             content: "pula fogueira Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográplesmente uma simulação de texto da indústria tipográfica ede impressos,",
-            views: 0
+            views: 0,
+            createdAt: new Date()
           },
           {
             title: "Dance Fest 2",
@@ -17,7 +18,8 @@ export const topics = (categories, users) => {
             negativeSupports: 65,
             numberOfReplies: 2,
             content: "pula fogueira Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográplesmente uma simulação de texto da indústria tipográfica ede impressos,",
-            views: 0
+            views: 0,
+            createdAt: new Date()
           },
     ]
     return topics.map((topic, index) => {

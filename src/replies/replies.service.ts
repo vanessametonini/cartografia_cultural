@@ -20,6 +20,10 @@ export class RepliesService {
     return this.replyModel.find().exec();
   }
 
+  findByTopicId(id: string): Promise<Reply[]>{
+    return this.replyModel.find({ topicId: id }).exec();
+  }
+
   async findOne(id: string): Promise<Reply> {
     return await this.replyModel.findOne({ _id: id });
   }

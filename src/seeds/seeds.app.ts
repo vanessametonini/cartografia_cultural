@@ -57,7 +57,7 @@ export class AppSeed {
         await this.eventsSeed.create(categoriesId, usersId);
         const topicsId = await this.topicsSeed.create(categoriesId, usersId);
         await this.supportsSeed.create(topicsId, usersId);
-        const repliesId = await this.repliesSeed.create(categoriesId, usersId);
+        const repliesId = await this.repliesSeed.create(topicsId, usersId);
         await this.likesSeed.create(topicsId, repliesId, usersId);
         await this.rejoindersSeed.create(topicsId, repliesId, usersId);
 

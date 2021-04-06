@@ -32,6 +32,9 @@ export class Topic {
 
     @Prop()
     views: number;
+
+    @Prop()
+    createdAt: Date;
 }
 
 export const TopicSchema = SchemaFactory.createForClass(Topic);

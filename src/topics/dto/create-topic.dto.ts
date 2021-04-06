@@ -8,4 +8,5 @@ export class CreateTopicDto {
     negativeSupports: number;
     numberOfReplies: number;
     views: number;
+    createdAt: Date;
 }

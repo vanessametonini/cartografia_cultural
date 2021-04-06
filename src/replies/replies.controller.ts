@@ -16,6 +16,11 @@ export class RepliesController {
   findAll() {
     return this.repliesService.findAll();
   }
+  
+  @Get('topic/:id')
+  findByTopicId(@Param('id') id: string) {
+    return this.repliesService.findByTopicId(id);
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

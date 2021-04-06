@@ -18,6 +18,22 @@ export const replies = (topics, users) => {
         {
             content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
             numberOfLikes: 4,
+        },
+        {
+            content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
+            numberOfLikes: 1,
+        },
+        {
+            content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
+            numberOfLikes: 2,
+        },
+        {
+            content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
+            numberOfLikes: 3,
+        },
+        {
+            content: 'Aperiam minima autem aliquam alias consequuntur quas magnam?',
+            numberOfLikes: 4,
         }
     ]
     return replies.map((support, index) => {
@@ -33,9 +49,9 @@ export const replies = (topics, users) => {
 export class RepliesSeed {
     constructor(private readonly repliesService: RepliesService) { }
 
-    async create(categories, users) {
+    async create(topics, users) {
         console.log("Seeding replies ...");
-        const promiseArray = replies(categories, users)
+        const promiseArray = replies(topics, users)
             .map((reply) => this.repliesService.create(reply));
         try {
             return (await Promise.all(promiseArray))

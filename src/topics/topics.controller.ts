@@ -5,7 +5,7 @@ import { UpdateTopicDto } from './dto/update-topic.dto';
 
 @Controller('topics')
 export class TopicsController {
-  constructor(private readonly topicsService: TopicsService) {}
+  constructor(private readonly topicsService: TopicsService) { }
 
   @Post()
   create(@Body() createTopicDto: CreateTopicDto) {
