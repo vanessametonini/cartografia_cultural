@@ -59,8 +59,8 @@ export class PinsSeed {
         try {
             return (await Promise.all(promiseArray))
                 .map((response) => {
-                    console.log(response);
-                    return response;
+                    console.log(response.id);
+                    return response.id;
                 });
         } catch (error) {
             console.error(error)
