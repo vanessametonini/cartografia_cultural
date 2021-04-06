@@ -17,9 +17,7 @@ export class PinsService {
   ) { }
 
   async create(createPinDto: CreatePinDto): Promise<any> {
-
     const {street, city, number} = createPinDto;
-
     const address = {
       street,
       city,
@@ -28,18 +26,10 @@ export class PinsService {
       number,
       postalcode: createPinDto.zipcode
     }
-    const location = await this.getLocation(address);
-    const pin = createPinDto;
-    pin.lat = location.lat;
-    pin.long = location.long;
-    const createdPin = new this.pinModel(pin);
-    const pinSaved = await createdPin.save()
-    const {_id , lat , long} = pinSaved;
-    return {
-      id: _id,
-      lat,
-      long
-    };
+    createPinDto = {...createPinDto, ...(await this.getLocation(address))};
+    const createdPin = new this.pinModel(createPinDto);
+    const {id , lat , long} = (await createdPin.save()).toJSON();
+    return { id, lat, long };
   }
 
   findAll(): Promise<Pin[]> {
