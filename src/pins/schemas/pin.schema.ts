@@ -49,6 +49,9 @@ export class Pin {
   long: number;
   
   @Prop()
+  link: string;
+
+  @Prop()
   facebook: string;
   
   @Prop()

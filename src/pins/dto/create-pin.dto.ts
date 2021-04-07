@@ -13,6 +13,7 @@ export class CreatePinDto {
     description: string;
     lat: number;
     long: number;
+    link: string;
     facebook: string;
     instagram: string;
     twitter: string;

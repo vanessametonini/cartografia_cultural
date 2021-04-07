@@ -45,6 +45,12 @@ export class Event {
   description: string;
 
   @Prop()
+  local: string;
+
+  @Prop()
+  link: string;
+
+  @Prop()
   facebook: string;
 
   @Prop()

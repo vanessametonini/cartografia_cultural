@@ -11,6 +11,8 @@ export class CreateEventDto {
     number: number;
     ticket: number;
     description: string;
+    local: string;
+    link: string;
     facebook: string;
     instagram: string;
     whatsapp: string;
