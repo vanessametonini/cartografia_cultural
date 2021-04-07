@@ -26,6 +26,10 @@ import { join } from 'path';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'documentation'),
+      serveRoot: '/documentation'
+    }),
     ConfigModule.forRoot({
       load: [configuration],
       envFilePath: [

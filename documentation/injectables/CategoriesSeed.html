@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/categories/categories.seed.ts</code>
+            <code>src/seeds/seeds.categories.ts</code>
         </p>
 
 
@@ -102,7 +102,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/categories/categories.seed.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/seeds/seeds.categories.ts:134</a></div>
                             </td>
                         </tr>
 
@@ -166,18 +166,11 @@
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Command({command: &#x27;create:categories&#x27;, describe: &#x27;create a categories&#x27;, autoExit: true})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/categories/categories.seed.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/seeds/seeds.categories.ts:137</a></div>
                 </td>
             </tr>
 
@@ -186,7 +179,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
                 </td>
@@ -199,152 +192,151 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Command, Positional, Option } from &#x27;nestjs-command&#x27;;
-import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { CategoriesService } from &#x27;./categories.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { CategoriesService } from &#x27;../categories/categories.service&#x27;;
+
+export const categories &#x3D; [
+    {
+        label: &quot;Artes visuais, arte urbana e arte digital&quot;,
+        color: &quot;#633D35&quot;,
+        legend: &quot;a&quot;,
+        value: 1,
+        icon: &quot;1.png&quot;
+    },
+    {
+        label: &quot;Escultura e Artesanato&quot;,
+        color: &quot;#AA4245&quot;,
+        legend: &quot;e&quot;,
+        value: 2,
+        icon: &quot;2.png&quot;
+    },
+    {
+        label: &quot;Dança&quot;,
+        color: &quot;#DF694A&quot;,
+        legend: &quot;d&quot;,
+        value: 3,
+        icon: &quot;3.png&quot;
+    },
+    {
+        label: &quot;Teatro e Circo&quot;,
+        color: &quot;#E0BC68&quot;,
+        legend: &quot;t&quot;,
+        value: 4,
+        icon: &quot;4.png&quot;
+    },
+    {
+        label: &quot;Cinema e Audiovisual&quot;,
+        color: &quot;#EFBC5E&quot;,
+        legend: &quot;c&quot;,
+        value: 5,
+        icon: &quot;5.png&quot;
+    },
+    {
+        label: &quot;Fotografia&quot;,
+        color: &quot;#62A06B&quot;,
+        legend: &quot;f&quot;,
+        value: 6,
+        icon: &quot;6.png&quot;
+    },
+    {
+        label: &quot;Literatura&quot;,
+        color: &quot;#528443&quot;,
+        legend: &quot;l&quot;,
+        value: 7,
+        icon: &quot;7.png&quot;
+    },
+    {
+        label: &quot;Design e Moda&quot;,
+        color: &quot;#2C4A25&quot;,
+        legend: &quot;d&quot;,
+        value: 8,
+        icon: &quot;8.png&quot;
+    },
+    {
+        label: &quot;Música&quot;,
+        color: &quot;#0E68D8&quot;,
+        legend: &quot;m&quot;,
+        value: 9,
+        icon: &quot;9.png&quot;
+    },
+    {
+        label: &quot;Patrimônio cultural e Museologia&quot;,
+        color: &quot;#53A4DF&quot;,
+        legend: &quot;p&quot;,
+        value: 10,
+        icon: &quot;10.png&quot;
+    },
+    {
+        label: &quot;Cultura popular, Folclore e Capoeira&quot;,
+        color: &quot;#95C6DC&quot;,
+        legend: &quot;c&quot;,
+        value: 11,
+        icon: &quot;11.png&quot;
+    },
+    {
+        label: &quot;Gastronomia&quot;,
+        color: &quot;#D390A2&quot;,
+        legend: &quot;g&quot;,
+        value: 12,
+        icon: &quot;12.png&quot;
+    },
+    {
+        label: &quot;Cultura Afro-brasileira&quot;,
+        color: &quot;#CC748C&quot;,
+        legend: &quot;c&quot;,
+        value: 13,
+        icon: &quot;13.png&quot;
+    },
+    {
+        label: &quot;Cultura Indígena&quot;,
+        color: &quot;#C95676&quot;,
+        legend: &quot;c&quot;,
+        value: 14,
+        icon: &quot;15.png&quot;
+    },
+    {
+        label: &quot;Gestores Públicos&quot;,
+        color: &quot;#BB7165&quot;,
+        legend: &quot;g&quot;,
+        value: 15,
+        icon: &quot;15.png&quot;
+    },
+    {
+        label: &quot;Produtor Cultural&quot;,
+        color: &quot;#AA4245&quot;,
+        legend: &quot;p&quot;,
+        value: 16,
+        icon: &quot;16.png&quot;
+    },
+    {
+        label: &quot;Espaços culturais&quot;,
+        color: &quot;#633D35&quot;,
+        legend: &quot;e&quot;,
+        value: 17,
+        icon: &quot;17.png&quot;
+    },
+    {
+        label: &quot;Espaços públicos&quot;,
+        color: &quot;#DF694A&quot;,
+        legend: &quot;e&quot;,
+        value: 18,
+        icon: &quot;18.png&quot;
+    }
+];
 
 @Injectable()
 export class CategoriesSeed {
     constructor(private readonly categoriesService: CategoriesService) { }
 
-    @Command({
-        command: &#x27;create:categories&#x27;,
-        describe: &#x27;create a categories&#x27;,
-        autoExit: true 
-    })
     async create() {
-        const categories &#x3D; [
-            {
-                label: &quot;Artes visuais, arte urbana e arte digital&quot;,
-                color: &quot;#633D35&quot;,
-                legend: &quot;a&quot;,
-                value: 1,
-                icon: &quot;1.png&quot;
-            },
-            {
-                label: &quot;Escultura e Artesanato&quot;,
-                color: &quot;#AA4245&quot;,
-                legend: &quot;e&quot;,
-                value: 2,
-                icon: &quot;2.png&quot;
-            },
-            {
-                label: &quot;Dança&quot;,
-                color: &quot;#DF694A&quot;,
-                legend: &quot;d&quot;,
-                value: 3,
-                icon: &quot;3.png&quot;
-            },
-            {
-                label: &quot;Teatro e Circo&quot;,
-                color: &quot;#E0BC68&quot;,
-                legend: &quot;t&quot;,
-                value: 4,
-                icon: &quot;4.png&quot;
-            },
-            {
-                label: &quot;Cinema e Audiovisual&quot;,
-                color: &quot;#EFBC5E&quot;,
-                legend: &quot;c&quot;,
-                value: 5,
-                icon: &quot;5.png&quot;
-            },
-            {
-                label: &quot;Fotografia&quot;,
-                color: &quot;#62A06B&quot;,
-                legend: &quot;f&quot;,
-                value: 6,
-                icon: &quot;6.png&quot;
-            },
-            {
-                label: &quot;Literatura&quot;,
-                color: &quot;#528443&quot;,
-                legend: &quot;l&quot;,
-                value: 7,
-                icon: &quot;7.png&quot;
-            },
-            {
-                label: &quot;Design e Moda&quot;,
-                color: &quot;#2C4A25&quot;,
-                legend: &quot;d&quot;,
-                value: 8,
-                icon: &quot;8.png&quot;
-            },
-            {
-                label: &quot;Música&quot;,
-                color: &quot;#0E68D8&quot;,
-                legend: &quot;m&quot;,
-                value: 9,
-                icon: &quot;9.png&quot;
-            },
-            {
-                label: &quot;Patrimônio cultural e Museologia&quot;,
-                color: &quot;#53A4DF&quot;,
-                legend: &quot;p&quot;,
-                value: 10,
-                icon: &quot;10.png&quot;
-            },
-            {
-                label: &quot;Cultura popular, Folclore e Capoeira&quot;,
-                color: &quot;#95C6DC&quot;,
-                legend: &quot;c&quot;,
-                value: 11,
-                icon: &quot;11.png&quot;
-            },
-            {
-                label: &quot;Gastronomia&quot;,
-                color: &quot;#D390A2&quot;,
-                legend: &quot;g&quot;,
-                value: 12,
-                icon: &quot;12.png&quot;
-            },
-            {
-                label: &quot;Cultura Afro-brasileira&quot;,
-                color: &quot;#CC748C&quot;,
-                legend: &quot;c&quot;,
-                value: 13,
-                icon: &quot;13.png&quot;
-            },
-            {
-                label: &quot;Cultura Indígena&quot;,
-                color: &quot;#C95676&quot;,
-                legend: &quot;c&quot;,
-                value: 14,
-                icon: &quot;15.png&quot;
-            },
-            {
-                label: &quot;Gestores Públicos&quot;,
-                color: &quot;#BB7165&quot;,
-                legend: &quot;g&quot;,
-                value: 15,
-                icon: &quot;15.png&quot;
-            },
-            {
-                label: &quot;Produtor Cultural&quot;,
-                color: &quot;#AA4245&quot;,
-                legend: &quot;p&quot;,
-                value: 16,
-                icon: &quot;16.png&quot;
-            },
-            {
-                label: &quot;Espaços culturais&quot;,
-                color: &quot;#633D35&quot;,
-                legend: &quot;e&quot;,
-                value: 17,
-                icon: &quot;17.png&quot;
-            },
-            {
-                label: &quot;Espaços públicos&quot;,
-                color: &quot;#DF694A&quot;,
-                legend: &quot;e&quot;,
-                value: 18,
-                icon: &quot;18.png&quot;
-            }
-        ];
+        console.log(&quot;Seeding categories ...&quot;);
         const promiseArray &#x3D; categories.map((category) &#x3D;&gt; this.categoriesService.create(category));
         try {
-            (await Promise.all(promiseArray))
-                .map((response) &#x3D;&gt; console.log(response));
+            return (await Promise.all(promiseArray))
+                .map((response) &#x3D;&gt; {
+                    console.log(response);
+                    return response;
+                });
         } catch (error) {
             console.error(error)
         }

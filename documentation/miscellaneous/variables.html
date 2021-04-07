@@ -58,10 +58,58 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#ApiException" title="src/files/files.controller.ts"><b>ApiException</b>&nbsp;&nbsp;&nbsp;(src/.../files.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#categories" title="src/seeds/seeds.categories.ts"><b>categories</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.categories.ts)</a>
+                        </li>
+                        <li>
                             <a href="#CategorySchema" title="src/categories/schemas/category.schema.ts"><b>CategorySchema</b>&nbsp;&nbsp;&nbsp;(src/.../category.schema.ts)</a>
                         </li>
                         <li>
-                            <a href="#jwtConstants" title="src/auth/constants.ts"><b>jwtConstants</b>&nbsp;&nbsp;&nbsp;(src/.../constants.ts)</a>
+                            <a href="#events" title="src/seeds/seeds.events.ts"><b>events</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.events.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EventSchema" title="src/events/schemas/event.schema.ts"><b>EventSchema</b>&nbsp;&nbsp;&nbsp;(src/.../event.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#likes" title="src/seeds/seeds.likes.ts"><b>likes</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.likes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LikeSchema" title="src/likes/schemas/like.schema.ts"><b>LikeSchema</b>&nbsp;&nbsp;&nbsp;(src/.../like.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#pins" title="src/seeds/seeds.pins.ts"><b>pins</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.pins.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PinSchema" title="src/pins/schemas/pin.schema.ts"><b>PinSchema</b>&nbsp;&nbsp;&nbsp;(src/.../pin.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#rejoinders" title="src/seeds/seeds.rejoinders.ts"><b>rejoinders</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.rejoinders.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RejoinderSchema" title="src/rejoinders/schemas/rejoinders.schema.ts"><b>RejoinderSchema</b>&nbsp;&nbsp;&nbsp;(src/.../rejoinders.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#replies" title="src/seeds/seeds.replies.ts"><b>replies</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.replies.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#ReplySchema" title="src/replies/schemas/reply.schema.ts"><b>ReplySchema</b>&nbsp;&nbsp;&nbsp;(src/.../reply.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#supports" title="src/seeds/seeds.supports.ts"><b>supports</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.supports.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SupportSchema" title="src/supports/schemas/support.schema.ts"><b>SupportSchema</b>&nbsp;&nbsp;&nbsp;(src/.../support.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#topics" title="src/seeds/seeds.topics.ts"><b>topics</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.topics.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TopicSchema" title="src/topics/schemas/topic.schema.ts"><b>TopicSchema</b>&nbsp;&nbsp;&nbsp;(src/.../topic.schema.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#users" title="src/seeds/seeds.users.ts"><b>users</b>&nbsp;&nbsp;&nbsp;(src/.../seeds.users.ts)</a>
                         </li>
                         <li>
                             <a href="#UserSchema" title="src/users/schemas/user.schema.ts"><b>UserSchema</b>&nbsp;&nbsp;&nbsp;(src/.../user.schema.ts)</a>
@@ -73,6 +121,191 @@
     </table>
 </section>
 
+    <h3>src/files/files.controller.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ApiException"></a>
+                        <span class="name">
+                            <b>
+                            ApiException</b>
+                            <a href="#ApiException"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>() &#x3D;&gt; class {
+    statusCode: HttpStatus;
+    message: any;
+    error: string;
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.categories.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="categories"></a>
+                        <span class="name">
+                            <b>
+                            categories</b>
+                            <a href="#categories"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+    {
+        label: &quot;Artes visuais, arte urbana e arte digital&quot;,
+        color: &quot;#633D35&quot;,
+        legend: &quot;a&quot;,
+        value: 1,
+        icon: &quot;1.png&quot;
+    },
+    {
+        label: &quot;Escultura e Artesanato&quot;,
+        color: &quot;#AA4245&quot;,
+        legend: &quot;e&quot;,
+        value: 2,
+        icon: &quot;2.png&quot;
+    },
+    {
+        label: &quot;Dança&quot;,
+        color: &quot;#DF694A&quot;,
+        legend: &quot;d&quot;,
+        value: 3,
+        icon: &quot;3.png&quot;
+    },
+    {
+        label: &quot;Teatro e Circo&quot;,
+        color: &quot;#E0BC68&quot;,
+        legend: &quot;t&quot;,
+        value: 4,
+        icon: &quot;4.png&quot;
+    },
+    {
+        label: &quot;Cinema e Audiovisual&quot;,
+        color: &quot;#EFBC5E&quot;,
+        legend: &quot;c&quot;,
+        value: 5,
+        icon: &quot;5.png&quot;
+    },
+    {
+        label: &quot;Fotografia&quot;,
+        color: &quot;#62A06B&quot;,
+        legend: &quot;f&quot;,
+        value: 6,
+        icon: &quot;6.png&quot;
+    },
+    {
+        label: &quot;Literatura&quot;,
+        color: &quot;#528443&quot;,
+        legend: &quot;l&quot;,
+        value: 7,
+        icon: &quot;7.png&quot;
+    },
+    {
+        label: &quot;Design e Moda&quot;,
+        color: &quot;#2C4A25&quot;,
+        legend: &quot;d&quot;,
+        value: 8,
+        icon: &quot;8.png&quot;
+    },
+    {
+        label: &quot;Música&quot;,
+        color: &quot;#0E68D8&quot;,
+        legend: &quot;m&quot;,
+        value: 9,
+        icon: &quot;9.png&quot;
+    },
+    {
+        label: &quot;Patrimônio cultural e Museologia&quot;,
+        color: &quot;#53A4DF&quot;,
+        legend: &quot;p&quot;,
+        value: 10,
+        icon: &quot;10.png&quot;
+    },
+    {
+        label: &quot;Cultura popular, Folclore e Capoeira&quot;,
+        color: &quot;#95C6DC&quot;,
+        legend: &quot;c&quot;,
+        value: 11,
+        icon: &quot;11.png&quot;
+    },
+    {
+        label: &quot;Gastronomia&quot;,
+        color: &quot;#D390A2&quot;,
+        legend: &quot;g&quot;,
+        value: 12,
+        icon: &quot;12.png&quot;
+    },
+    {
+        label: &quot;Cultura Afro-brasileira&quot;,
+        color: &quot;#CC748C&quot;,
+        legend: &quot;c&quot;,
+        value: 13,
+        icon: &quot;13.png&quot;
+    },
+    {
+        label: &quot;Cultura Indígena&quot;,
+        color: &quot;#C95676&quot;,
+        legend: &quot;c&quot;,
+        value: 14,
+        icon: &quot;15.png&quot;
+    },
+    {
+        label: &quot;Gestores Públicos&quot;,
+        color: &quot;#BB7165&quot;,
+        legend: &quot;g&quot;,
+        value: 15,
+        icon: &quot;15.png&quot;
+    },
+    {
+        label: &quot;Produtor Cultural&quot;,
+        color: &quot;#AA4245&quot;,
+        legend: &quot;p&quot;,
+        value: 16,
+        icon: &quot;16.png&quot;
+    },
+    {
+        label: &quot;Espaços culturais&quot;,
+        color: &quot;#633D35&quot;,
+        legend: &quot;e&quot;,
+        value: 17,
+        icon: &quot;17.png&quot;
+    },
+    {
+        label: &quot;Espaços públicos&quot;,
+        color: &quot;#DF694A&quot;,
+        legend: &quot;e&quot;,
+        value: 18,
+        icon: &quot;18.png&quot;
+    }
+]</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
     <h3>src/categories/schemas/category.schema.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -104,31 +337,603 @@
             </tbody>
         </table>
 </section>
-    <h3>src/auth/constants.ts</h3>
+    <h3>src/seeds/seeds.events.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="jwtConstants"></a>
+                        <a name="events"></a>
                         <span class="name">
                             <b>
-                            jwtConstants</b>
-                            <a href="#jwtConstants"><span class="icon ion-ios-link"></span></a>
+                            events</b>
+                            <a href="#events"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
+                            <i>Default value : </i><code>(categories, users) &#x3D;&gt; {
+    const events &#x3D; [
+        {
+            title: &quot;Event 1&quot;,
+            date: new Date(),
+            street: &quot;rua 1&quot;,
+            neighborhood: &quot;bairro 1&quot;,
+            city: &#x27;cidade 1&#x27;,
+            zipcode: 69303410,
+            number: 1,
+            ticket: 1,
+            description: &quot;descrição 1&quot;,
+            facebook: &quot;https://www.facebook.com/&quot;,
+            instagram: &quot;https://www.instagram.com/&quot;,
+            whatsapp: &quot;https://www.whatsapp.com/&quot;,
+            twitter: &quot;https://www.twitter.com/&quot;
+        },
+        {
+            title: &quot;Event 2&quot;,
+            date: new Date(),
+            street: &quot;rua 2&quot;,
+            neighborhood: &quot;bairro 2&quot;,
+            city: &#x27;cidade 2&#x27;,
+            zipcode: 69303420,
+            number: 2,
+            ticket: 2,
+            description: &quot;descrição 2&quot;,
+            facebook: &quot;https://www.facebook.com/&quot;,
+            instagram: &quot;https://www.instagram.com/&quot;,
+            whatsapp: &quot;https://www.whatsapp.com/&quot;,
+            twitter: &quot;https://www.twitter.com/&quot;
+        }
+    ]
+    return events.map((event, index) &#x3D;&gt; {
+        return {
+            ...event,
+            categoryId: categories[index % categories.length],
+            userId: users[index % users.length],
+            imageIds: [&#x27;60689bc939f8713cc87acb83&#x27;]
+        }
+    })
+}</code>
                         </td>
                     </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/events/schemas/event.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="EventSchema"></a>
+                        <span class="name">
+                            <b>
+                            EventSchema</b>
+                            <a href="#EventSchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>{
-    secret: &#x27;chavemuitosecreta&#x27;,
-  }</code>
+                            <i>Default value : </i><code>SchemaFactory.createForClass(Event)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.likes.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="likes"></a>
+                        <span class="name">
+                            <b>
+                            likes</b>
+                            <a href="#likes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(topics, replies, users) &#x3D;&gt; {
+    const likes &#x3D; [
+        {}, {}, {}, {}, {}, {}, {}, {}
+    ]
+    return likes.map((like, index) &#x3D;&gt; {
+        return { 
+            ...like,
+            replyId: replies[index % replies.length],
+            topicId: topics[index % topics.length],
+            userId: users[index % users.length],
+        }
+    })
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/likes/schemas/like.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="LikeSchema"></a>
+                        <span class="name">
+                            <b>
+                            LikeSchema</b>
+                            <a href="#LikeSchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>SchemaFactory.createForClass(Like)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.pins.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pins"></a>
+                        <span class="name">
+                            <b>
+                            pins</b>
+                            <a href="#pins"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(categories, users) &#x3D;&gt; {
+    const pins &#x3D; [
+        {
+            title: &#x27;Brava&#x27;,
+            email: &#x27;brava@email.com&#x27;,
+            phone: 6732533795,
+            street: &#x27;Av Calógeras&#x27;,
+            number: 3100,
+            neighborhood: &#x27;Centro&#x27;,
+            city: &#x27;Campo Crande&#x27;,
+            zipcode: 79004381,
+            description: &#x27;Muito mais que um bar, um Bar&#x27;,
+            lat: -20.453422,
+            long: -54.620065,
+            facebook: &#x27;https://www.facebook.com/brava3100&#x27;,
+            instagram: &#x27;https://www.instagram.com/brava3100/&#x27;,
+            twitter: &#x27;https://twitter.com&#x27;,
+            whatsapp: &#x27;https://whatsapp.com&#x27;
+          },
+          {
+            title: &#x27;Casa Colonial&#x27;,
+            email: &#x27;casacolonial@email.com&#x27;,
+            phone: 6333833207,
+            street: &#x27;Av. Afonso Pena&#x27;,
+            number: 3997,
+            neighborhood: &#x27;Centro&#x27;,
+            city: &#x27;Campo Crande&#x27;,
+            zipcode: 79020000,
+            description: &#x27;á la carte fino com destaque ao galeto, costelinha e talharim, com arquitetura e decoração de estilo colonial&#x27;,
+            lat: -20.460178,
+            long: -54.598564,
+            facebook: &#x27;https://www.facebook.com/CasaColonialCG&#x27;,
+            instagram: &#x27;https://www.instagram.com/casacolonialcg/&#x27;,
+            twitter: &#x27;https://twitter.com&#x27;,
+            whatsapp: &#x27;https://whatsapp.com&#x27;
+          }
+    ]
+    return pins.map((pin, index) &#x3D;&gt; {
+        return { 
+            ...pin, 
+            categoryId: categories[index % categories.length],
+            userId: users[index % users.length],
+            imageIds: [&#x27;60689bc939f8713cc87acb83&#x27;, &#x27;6068a568b884f04dbc47e976&#x27;]
+        }
+    })
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/pins/schemas/pin.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="PinSchema"></a>
+                        <span class="name">
+                            <b>
+                            PinSchema</b>
+                            <a href="#PinSchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>SchemaFactory.createForClass(Pin)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.rejoinders.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rejoinders"></a>
+                        <span class="name">
+                            <b>
+                            rejoinders</b>
+                            <a href="#rejoinders"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(topics, replies, users) &#x3D;&gt; {
+    const rejoinders &#x3D; [
+        {}, {}, {}, {}, {}, {}, {}, {}
+    ]
+    return rejoinders.map((like, index) &#x3D;&gt; {
+        return { 
+            ...like,
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            replyId: replies[index % replies.length],
+            topicId: topics[index % topics.length],
+            userId: users[index % users.length],
+            createdAt: new Date()
+        }
+    })
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/rejoinders/schemas/rejoinders.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="RejoinderSchema"></a>
+                        <span class="name">
+                            <b>
+                            RejoinderSchema</b>
+                            <a href="#RejoinderSchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>SchemaFactory.createForClass(Rejoinder)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.replies.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="replies"></a>
+                        <span class="name">
+                            <b>
+                            replies</b>
+                            <a href="#replies"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(topics, users) &#x3D;&gt; {
+    const replies &#x3D; [
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        },
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        },
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        },
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        },
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        },
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        },
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        },
+        {
+            content: &#x27;Aperiam minima autem aliquam alias consequuntur quas magnam?&#x27;,
+            numberOfLikes: 0,
+            createdAt: new Date()
+        }
+    ]
+    return replies.map((support, index) &#x3D;&gt; {
+        return {
+            ...support,
+            topicId: topics[index % topics.length],
+            userId: users[index % users.length],
+        }
+    })
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/replies/schemas/reply.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ReplySchema"></a>
+                        <span class="name">
+                            <b>
+                            ReplySchema</b>
+                            <a href="#ReplySchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>SchemaFactory.createForClass(Reply)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.supports.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="supports"></a>
+                        <span class="name">
+                            <b>
+                            supports</b>
+                            <a href="#supports"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(topics, users) &#x3D;&gt; {
+    const supports &#x3D; [
+        {
+            status: true,
+        },
+        {
+            status: false,
+        },
+        {
+            status: true,
+        },
+        {
+            status: false,
+        }
+    ]
+    return supports.map((support, index) &#x3D;&gt; {
+        return { 
+            ...support, 
+            topicId: topics[index % topics.length],
+            userId: users[index % users.length],
+        }
+    })
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/supports/schemas/support.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="SupportSchema"></a>
+                        <span class="name">
+                            <b>
+                            SupportSchema</b>
+                            <a href="#SupportSchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>SchemaFactory.createForClass(Support)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.topics.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="topics"></a>
+                        <span class="name">
+                            <b>
+                            topics</b>
+                            <a href="#topics"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(categories, users) &#x3D;&gt; {
+    const topics &#x3D; [
+        {
+            title: &quot;Dance Fest 1&quot;,
+            positiveSupports: 0,
+            negativeSupports: 0,
+            numberOfReplies: 0,
+            content: &quot;pula fogueira Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográplesmente uma simulação de texto da indústria tipográfica ede impressos,&quot;,
+            views: 0,
+            createdAt: new Date()
+          },
+          {
+            title: &quot;Dance Fest 2&quot;,
+            positiveSupports: 0,
+            negativeSupports: 0,
+            numberOfReplies: 0,
+            content: &quot;pula fogueira Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográplesmente uma simulação de texto da indústria tipográfica ede impressos,&quot;,
+            views: 0,
+            createdAt: new Date()
+          },
+    ]
+    return topics.map((topic, index) &#x3D;&gt; {
+        const category &#x3D; categories[index % categories.length];
+        return { 
+            ...topic,
+            userId: users[index % users.length],
+            categoryId: category,
+            categoriesTagged: [category, category]
+        }
+    })
+}</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/topics/schemas/topic.schema.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="TopicSchema"></a>
+                        <span class="name">
+                            <b>
+                            TopicSchema</b>
+                            <a href="#TopicSchema"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>SchemaFactory.createForClass(Topic)</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/seeds/seeds.users.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="users"></a>
+                        <span class="name">
+                            <b>
+                            users</b>
+                            <a href="#users"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>(categories) &#x3D;&gt; {
+    const users &#x3D; [
+        {
+            firstName: &quot;Aarão&quot;,
+            lastName: &quot;Melo&quot;,
+            email: &quot;aarao@mail.com&quot;,
+            password: &quot;12345678&quot;,
+            gender: &quot;Masculino&quot;,
+            ageRange: &quot;Entre 20 e 30 anos&quot;,
+            education: &quot;Superior completo&quot;,
+            isAdmin: true,
+        },
+        {
+            firstName: &quot;Joe&quot;,
+            lastName: &quot;Lopes&quot;,
+            email: &quot;joe@mail.com&quot;,
+            password: &quot;12345678&quot;,
+            gender: &quot;Masculino&quot;,
+            ageRange: &quot;Entre 20 e 30 anos&quot;,
+            education: &quot;Superior completo&quot;,
+            isAdmin: false,
+        }
+    ]
+    return users.map((user, index) &#x3D;&gt; {
+        return {
+            ...user,
+            categoryId: categories[index % categories.length],
+            avatarId: &#x27;60689bc939f8713cc87acb83&#x27;,
+        }
+    })
+}</code>
                         </td>
                     </tr>
 
@@ -152,14 +957,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>SchemaFactory.createForClass(User)
-  .set(&#x27;toJSON&#x27;, {
-    transform: function (doc, ret, options) {
-      ret.id &#x3D; ret._id;
-      delete ret._id;
-      delete ret.__v;
-    }
-  })</code>
+                            <i>Default value : </i><code>SchemaFactory.createForClass(User)</code>
                         </td>
                     </tr>
 

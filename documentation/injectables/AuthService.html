@@ -321,11 +321,11 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService
-  ) {}
+  ) { }
 
   async validateUser(loginUserDto: LoginUserDto): Promise&lt;any&gt; {
-    const user &#x3D; await this.usersService.login(loginUserDto);
-    if (user &amp;&amp; user.password &#x3D;&#x3D;&#x3D; loginUserDto.password) {
+    const user &#x3D; await this.usersService.findByEmail(loginUserDto.email);
+    if (user &amp;&amp; await user.comparePassword(loginUserDto.password)) {
       const { password, ...result } &#x3D; user;
       return result;
     }
@@ -333,10 +333,12 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload &#x3D; { username: user.username, sub: user.userId };
+    const User &#x3D; await this.usersService.findOne(user._doc._id);
     return {
-      access_token: this.jwtService.sign(payload),
-    };
+      token: this.jwtService.sign({ id: user._doc._id }),
+      user: User
+    }
+    
   }
 }</code></pre>
     </div>

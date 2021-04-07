@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/users/users.seed.ts</code>
+            <code>src/seeds/seeds.users.ts</code>
         </p>
 
 
@@ -102,7 +102,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/users/users.seed.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/seeds/seeds.users.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -162,22 +162,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create()</code>
+                    <code>create(categories)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Command({command: &#x27;create:users&#x27;, describe: &#x27;create a users&#x27;, autoExit: true})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/users/users.seed.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/seeds/seeds.users.ts:40</a></div>
                 </td>
             </tr>
 
@@ -186,8 +179,35 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>categories</td>
 
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -199,37 +219,55 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Command, Positional, Option } from &#x27;nestjs-command&#x27;;
-import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { UsersService } from &#x27;./users.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+import { UsersService } from &#x27;../users/users.service&#x27;;
+
+export const users &#x3D; (categories) &#x3D;&gt; {
+    const users &#x3D; [
+        {
+            firstName: &quot;Aarão&quot;,
+            lastName: &quot;Melo&quot;,
+            email: &quot;aarao@mail.com&quot;,
+            password: &quot;12345678&quot;,
+            gender: &quot;Masculino&quot;,
+            ageRange: &quot;Entre 20 e 30 anos&quot;,
+            education: &quot;Superior completo&quot;,
+            isAdmin: true,
+        },
+        {
+            firstName: &quot;Joe&quot;,
+            lastName: &quot;Lopes&quot;,
+            email: &quot;joe@mail.com&quot;,
+            password: &quot;12345678&quot;,
+            gender: &quot;Masculino&quot;,
+            ageRange: &quot;Entre 20 e 30 anos&quot;,
+            education: &quot;Superior completo&quot;,
+            isAdmin: false,
+        }
+    ]
+    return users.map((user, index) &#x3D;&gt; {
+        return {
+            ...user,
+            categoryId: categories[index % categories.length],
+            avatarId: &#x27;60689bc939f8713cc87acb83&#x27;,
+        }
+    })
+};
 
 @Injectable()
 export class UsersSeed {
     constructor(private readonly usersService: UsersService) { }
 
-    @Command({
-        command: &#x27;create:users&#x27;,
-        describe: &#x27;create a users&#x27;,
-        autoExit: true 
-    })
-    async create() {
-        const users &#x3D; [
-            {
-                firstName: &quot;Aarão&quot;,
-                lastName: &quot;Melo&quot;,
-                email: &quot;aarao@mail.com&quot;,
-                password: &quot;12345678&quot;,
-                gender: &quot;Masculino&quot;,
-                ageRange: &quot;Entre 20 e 30 anos&quot;,
-                education: &quot;Superior completo&quot;,
-                avatar: &quot;default.png&quot;,
-                categoryId: &quot;606766011076582ae8314c2c&quot;
-            }
-        ];
-        const promiseArray &#x3D; users.map((user) &#x3D;&gt; this.usersService.create(user));
+    async create(categories) {
+        console.log(&quot;Seeding users ...&quot;);
+        const promiseArray &#x3D; users(categories)
+            .map((user) &#x3D;&gt; this.usersService.create(user));
         try {
-            (await Promise.all(promiseArray))
-                .map((response) &#x3D;&gt; console.log(response));
+            return (await Promise.all(promiseArray))
+                .map((response) &#x3D;&gt; {
+                    console.log(response);
+                    return response;
+                });
         } catch (error) {
             console.error(error)
         }
