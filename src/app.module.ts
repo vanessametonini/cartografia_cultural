@@ -20,6 +20,7 @@ import { LikesModule } from './likes/likes.module';
 import { RejoindersModule } from './rejoinders/rejoinders.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { EmailsModule } from './emails/emails.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { join } from 'path';
     RepliesModule,
     LikesModule,
     RejoindersModule,
+    EmailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

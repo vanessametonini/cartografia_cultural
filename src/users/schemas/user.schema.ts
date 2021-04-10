@@ -38,6 +38,9 @@ export class User {
   @Prop()
   isAdmin: boolean;
 
+  @Prop()
+  confirmToken: string;
+
   comparePassword: Function;
 }
 

@@ -12,6 +12,7 @@ export const users = (categories) => {
             ageRange: "Entre 20 e 30 anos",
             education: "Superior completo",
             isAdmin: true,
+            confirmToken: 'confirmtoken'
         },
         {
             firstName: "Joe",
@@ -22,6 +23,7 @@ export const users = (categories) => {
             ageRange: "Entre 20 e 30 anos",
             education: "Superior completo",
             isAdmin: false,
+            confirmToken: 'confirmtoken'
         }
     ]
     return users.map((user, index) => {
@@ -45,7 +47,7 @@ export class UsersSeed {
             return (await Promise.all(promiseArray))
                 .map((response) => {
                     console.log(response);
-                    return response;
+                    return response.id;
                 });
         } catch (error) {
             console.error(error)

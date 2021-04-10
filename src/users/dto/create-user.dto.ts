@@ -8,4 +8,5 @@ export class CreateUserDto {
     education: string;
     avatarId: string;
     categoryId: string
+    confirmToken: string;
 }

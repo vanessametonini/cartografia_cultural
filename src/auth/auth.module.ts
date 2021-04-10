@@ -6,9 +6,11 @@ import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { EmailsModule } from 'src/emails/emails.module';
 
 @Module({
   imports: [
+    EmailsModule, // 📧
     UsersModule,
     PassportModule,
     JwtModule.registerAsync({
