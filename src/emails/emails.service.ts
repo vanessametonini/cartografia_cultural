@@ -20,6 +20,7 @@ export class EmailsService {
       context: { // ✏️ filling curly brackets with content
         name: user.firstName,
         url,
+        label:'Confirmar'
       },
     })
     .then((success) => {

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
@@ -15,7 +15,7 @@ export class AuthService {
   ) { }
 
   async signUp(createUserDto: CreateUserDto): Promise<any> {
-    createUserDto.confirmToken = Math.floor(1000 + Math.random() * 9000).toString();
+    createUserDto.confirmToken = Math.floor(100000 + Math.random() * 900000).toString();
     const user = await this.usersService.create(createUserDto);
     await this.emailservice.sendUserConfirmation(user);
     return user;
@@ -36,6 +36,13 @@ export class AuthService {
       token: this.jwtService.sign({ id: user._doc._id }),
       user: User
     }
-    
   }
+
+  async confirmEmail(confirmToken: string): Promise<any> {
+    const result = await this.usersService.findOneAndUpdate({ confirmToken }, { confirmToken: null });
+    if (!result) throw new NotFoundException('Token inválido');
+    return result;
+  }
+    
+
 }

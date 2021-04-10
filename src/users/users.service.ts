@@ -30,6 +30,10 @@ export class UsersService {
     return this.userModel.findByIdAndUpdate({ _id: id }, updateUserDto).exec();
   }
 
+  async findOneAndUpdate( updateUser, fields): Promise<User> {
+    return this.userModel.findOneAndUpdate(updateUser, fields).exec();
+  }
+
   async remove(id: string): Promise<User>{
     return await this.userModel.findOneAndDelete({ _id: id }).exec();
   }

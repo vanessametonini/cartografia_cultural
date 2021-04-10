@@ -39,7 +39,8 @@ export class AppController {
   @Get('auth/confirm/:token')
   @Render('confirmation')
   async confirm(@Param('token') token: string) {
-    return { name: 'Nome do Usuário', url: `${this.configService.get<string>('BASE_URL')}signin` }
+    const user = await this.authService.confirmEmail(token);
+    return { name: user.firstName, url: `${this.configService.get<string>('BASE_URL')}signin`, label:'SignIn' }
   }
 
 
