@@ -17,9 +17,12 @@ import {
  
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, payload: string): void {
-    console.log(payload);
-    
    this.server.emit('msgToClient', payload);
+  }
+
+  @SubscribeMessage('newTopicToServer')
+  topicMessage(client: Socket, payload: string): void {
+   this.server.emit('newTopicToClient', payload);
   }
  
   afterInit(server: Server) {
