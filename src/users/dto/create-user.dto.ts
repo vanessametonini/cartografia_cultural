@@ -9,4 +9,5 @@ export class CreateUserDto {
     avatarId: string;
     categoryId: string
     confirmToken: string;
+    recoverToken: string;
 }

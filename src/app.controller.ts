@@ -5,6 +5,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard'
 import { AuthService } from './auth/auth.service';
 import { CreateUserDto } from './users/dto/create-user.dto';
 import { ConfigService } from '@nestjs/config'
+import { ChangePasswordDto } from './auth/dto/change-password.dto';
 
 @Controller()
 export class AppController {
@@ -42,6 +43,26 @@ export class AppController {
     const user = await this.authService.confirmEmail(token);
     return { name: user.firstName, url: `${this.configService.get<string>('BASE_URL')}signin`, label:'SignIn' }
   }
+
+  @Post('auth/send-recover-email')
+  async sendRecoverPasswordEmail(@Body('email') email: string) {
+    await this.authService.sendRecoverPasswordEmail(email);
+    return {
+      message: 'Foi enviado um email com instruções para resetar sua senha',
+    };
+  }
+
+  @Post('auth/reset-password/:token')
+  async resetPassword(
+    @Param('token') token: string,
+    @Body() changePasswordDto: ChangePasswordDto,
+  ): Promise<{ message: string }> {
+    await this.authService.resetPassword(token, changePasswordDto);
+    return {
+      message: 'Senha alterada com sucesso',
+    };
+  }
+
 
 
 }

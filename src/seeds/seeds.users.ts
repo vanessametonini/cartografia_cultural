@@ -12,19 +12,21 @@ export const users = (categories) => {
             ageRange: "Entre 20 e 30 anos",
             education: "Superior completo",
             isAdmin: true,
-            confirmToken: 'confirmtoken'
+            confirmToken: null,
+            recoverToken: null,
         },
-        {
-            firstName: "Joe",
-            lastName: "Lopes",
-            email: "joe@mail.com",
-            password: "12345678",
-            gender: "Masculino",
-            ageRange: "Entre 20 e 30 anos",
-            education: "Superior completo",
-            isAdmin: false,
-            confirmToken: 'confirmtoken'
-        }
+        // {
+        //     firstName: "Joe",
+        //     lastName: "Lopes",
+        //     email: "joe@mail.com",
+        //     password: "12345678",
+        //     gender: "Masculino",
+        //     ageRange: "Entre 20 e 30 anos",
+        //     education: "Superior completo",
+        //     isAdmin: false,
+        //     confirmToken: null,
+        //     recoverToken: null,
+        // }
     ]
     return users.map((user, index) => {
         return {
@@ -46,7 +48,7 @@ export class UsersSeed {
         try {
             return (await Promise.all(promiseArray))
                 .map((response) => {
-                    console.log(response);
+                    console.log(response.id );
                     return response.id;
                 });
         } catch (error) {

@@ -18,9 +18,15 @@ import * as bcrypt from 'bcrypt';
             user.set({ password: hashedPassword });
             next();
           });
+          
 
           UserSchema.methods = {
-              comparePassword: async function (plainPassword) {
+            comparePassword: async function (plainPassword) {
+              const user = this;
+              return await bcrypt.compare(plainPassword, user.get('password'));
+            },
+
+            updatePassword: async function (plainPassword) {
               const user = this;
               return await bcrypt.compare(plainPassword, user.get('password'));
             },

@@ -41,6 +41,9 @@ export class User {
   @Prop()
   confirmToken: string;
 
+  @Prop()
+  recoverToken: string;
+
   comparePassword: Function;
 }
 

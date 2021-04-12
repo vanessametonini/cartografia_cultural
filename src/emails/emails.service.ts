@@ -23,11 +23,21 @@ export class EmailsService {
         label:'Confirmar'
       },
     })
-    .then((success) => {
-      console.log(success)
-    })
-    .catch((err) => {
-      console.log(err)
-    });;
   }
+
+  async sendRecoverPassword(user){
+    const url = `${this.configService.get<string>('BASE_URL')}reset-password/${user.recoverToken}`;
+    await this.mailerService.sendMail({
+      to: user.email,
+      from: '"Support Cult" <support@cult.com>', // override default from
+      subject: 'Welcome to Nice App! Recover your password!',
+      template: 'recover', // `.hbs` extension is appended automatically
+      context: { // ✏️ filling curly brackets with content
+        name: user.firstName,
+        url,
+        label:'Confirmar'
+      },
+    })
+  }
+
 }

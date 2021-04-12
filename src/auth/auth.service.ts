@@ -1,10 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
-
 import { JwtService } from '@nestjs/jwt';
 import { EmailsService } from 'src/emails/emails.service';
+import { randomBytes } from 'crypto';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
   ) { }
 
   async signUp(createUserDto: CreateUserDto): Promise<any> {
-    createUserDto.confirmToken = Math.floor(100000 + Math.random() * 900000).toString();
+    createUserDto.confirmToken = randomBytes(32).toString('hex');
     const user = await this.usersService.create(createUserDto);
     await this.emailservice.sendUserConfirmation(user);
     return user;
@@ -43,6 +44,41 @@ export class AuthService {
     if (!result) throw new NotFoundException('Token inválido');
     return result;
   }
+
+  
+  async sendRecoverPasswordEmail(email: string) {
+    const user = await this.usersService.findByEmail(email);
+    if (!user)
+      throw new NotFoundException('Não há usuário cadastrado com esse email.');
+    const token = randomBytes(32).toString('hex');
+    const userUpdated = await this.usersService.findOneAndUpdate(
+      { email: user.email },
+      { recoverToken:  token}
+    )
+    userUpdated.recoverToken = token;    
+    await this.emailservice.sendRecoverPassword(userUpdated);
+  }
+
+  async changePassword(
+    id: string,
+    changePasswordDto: ChangePasswordDto,
+  ): Promise<void> {
+    const { password, passwordConfirmation } = changePasswordDto;
+    if (password != passwordConfirmation)
+      throw new UnprocessableEntityException('As senhas não conferem');
+    await this.usersService.changePassword(id, password);
+  }
+
+  async  resetPassword(recoverToken, changePasswordDto){
+    const user = await this.usersService.findOneByProp({ recoverToken });
+    if (!user) throw new NotFoundException('Token inválido.');
+    try {
+      await this.changePassword(user._id, changePasswordDto);
+    } catch (error) {
+      throw error;
+    }
     
+  }
+
 
 }
