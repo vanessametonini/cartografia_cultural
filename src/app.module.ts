@@ -21,6 +21,7 @@ import { RejoindersModule } from './rejoinders/rejoinders.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { EmailsModule } from './emails/emails.module';
+import { AppGateway } from './app.gateway';
 
 @Module({
   imports: [
@@ -63,6 +64,6 @@ import { EmailsModule } from './emails/emails.module';
     EmailsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppGateway],
 })
 export class AppModule { }
