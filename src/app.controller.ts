@@ -32,7 +32,7 @@ export class AppController {
     return req.user;
   }
 
-  @Get('auth/signup')
+  @Post('auth/signup')
   signup(@Body() createUserDto: CreateUserDto) {
     return this.authService.signUp(createUserDto)
   }
