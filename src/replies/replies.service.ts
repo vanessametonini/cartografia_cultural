@@ -4,16 +4,22 @@ import { Model } from 'mongoose';
 import { CreateReplyDto } from './dto/create-reply.dto';
 import { UpdateReplyDto } from './dto/update-reply.dto';
 import { Reply, ReplyDocument } from './schemas/reply.schema';
+import { TopicsService } from '../topics/topics.service';
 
 @Injectable()
 export class RepliesService {
   constructor(
-    @InjectModel(Reply.name) private readonly replyModel: Model<ReplyDocument>
+    @InjectModel(Reply.name) private readonly replyModel: Model<ReplyDocument>,
+    private readonly topicsService: TopicsService,
   ) { }
 
   async create(createReplyDto: CreateReplyDto): Promise<Reply> {
-    const createdReply = new this.replyModel(createReplyDto);
-    return (await createdReply.save()).toJSON().id;
+    const createdReply = new this.replyModel(createReplyDto)
+    const reply = await createdReply.save()
+    const { _id, topicId } =  reply;
+    await this.topicsService.incrementNumberOfReplies(topicId);
+    return _id;
+    // return (await createdReply.save()).toJSON().id;
   }
 
   findAll(): Promise<Reply[]> {

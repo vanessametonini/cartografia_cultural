@@ -35,7 +35,12 @@ export class TopicsService {
       return this.update(id , { positiveSupports: topic.positiveSupports + 1 })
     }
     return this.update(id , { negativeSupports: topic.negativeSupports + 1 })
+  }
 
+
+  async incrementNumberOfReplies(id: string): Promise<Topic> {
+    const topic = await this.findOne(id);
+    return this.update(id , { numberOfReplies: topic.numberOfReplies + 1 });
   }
 
   async remove(id: string): Promise<Topic> {

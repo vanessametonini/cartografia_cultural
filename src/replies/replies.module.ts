@@ -3,9 +3,11 @@ import { RepliesService } from './replies.service';
 import { RepliesController } from './replies.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Reply, ReplySchema } from './schemas/reply.schema';
+import { TopicsModule } from '../topics/topics.module';
 
 @Module({
   imports: [
+    TopicsModule,
     MongooseModule.forFeatureAsync([
       {
         name: Reply.name,
