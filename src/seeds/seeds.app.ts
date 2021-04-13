@@ -52,14 +52,14 @@ export class AppSeed {
             }
         await mongoose.connection.close();
         const categoriesId = await this.categoriesSeed.create();
-        const usersId = await this.usersSeed.create(categoriesId);
-        await this.pinsSeed.create(categoriesId, usersId);
-        await this.eventsSeed.create(categoriesId, usersId);
-        const topicsId = await this.topicsSeed.create(categoriesId, usersId);
-        // await this.supportsSeed.create(topicsId, usersId);
-        const repliesId = await this.repliesSeed.create(topicsId, usersId);
-        // await this.likesSeed.create(topicsId, repliesId, usersId);
-        await this.rejoindersSeed.create(topicsId, repliesId, usersId);
+        // const usersId = await this.usersSeed.create(categoriesId);
+        // await this.pinsSeed.create(categoriesId, usersId);
+        // await this.eventsSeed.create(categoriesId, usersId);
+        // const topicsId = await this.topicsSeed.create(categoriesId, usersId);
+        // // await this.supportsSeed.create(topicsId, usersId);
+        // const repliesId = await this.repliesSeed.create(topicsId, usersId);
+        // // await this.likesSeed.create(topicsId, repliesId, usersId);
+        // await this.rejoindersSeed.create(topicsId, repliesId, usersId);
 
 
     }
