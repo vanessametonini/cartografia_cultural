@@ -3,9 +3,11 @@ import { RejoindersService } from './rejoinders.service';
 import { RejoindersController } from './rejoinders.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Rejoinder, RejoinderSchema } from './schemas/rejoinders.schema';
+import { TopicsModule } from 'src/topics/topics.module';
 
 @Module({
   imports: [
+    TopicsModule,
     MongooseModule.forFeatureAsync([
       {
         name: Rejoinder.name,
