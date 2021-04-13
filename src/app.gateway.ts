@@ -13,8 +13,7 @@ import { TopicsService } from './topics/topics.service';
 import { UsersService } from './users/users.service';
 import { SupportsService } from './supports/supports.service';
 import { RejoindersService } from './rejoinders/rejoinders.service';
-
-
+import { LikesService } from './likes/likes.service';
 
 
 
@@ -26,6 +25,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     private readonly repliesService: RepliesService,
     private readonly supportsService: SupportsService,
     private readonly rejoindersService: RejoindersService,
+    private readonly likesService: LikesService,
   ){}
   @WebSocketServer() server: Server;
   private logger: Logger = new Logger('AppGateway');
@@ -94,7 +94,20 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     });
   }
 
+  @SubscribeMessage('newLikeToServer')
+  async likeMessage(client: Socket, payload) {
+    const likeId = await this.likesService.create(payload)
+    const like = {id: likeId.toString(), ...payload};
+    this.server.emit('newLikeToClient', like);
+  }
 
-
+  @SubscribeMessage('removeLikeToServer')
+  async removeLikeMessage(client: Socket, payload) {
+    const likeRemoved = await this.likesService.remove(payload.id)
+    this.server.emit('removeLikeToClient', {
+      id: likeRemoved._id,
+      topicId: likeRemoved.topicId
+    });
+  }
   
 }

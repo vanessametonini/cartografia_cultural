@@ -32,7 +32,7 @@ export class LikesService {
     return this.likeModel.findByIdAndUpdate({ _id: id }, updateLikeDto).exec();
   }
 
-  async remove(id: string): Promise<Like> {
+  async remove(id: string): Promise<any> {
     return await this.likeModel.findOneAndDelete({ _id: id }).exec();
   }
 }
