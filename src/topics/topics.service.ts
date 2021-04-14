@@ -43,6 +43,11 @@ export class TopicsService {
     return this.update(id , { numberOfReplies: topic.numberOfReplies + 1 });
   }
 
+  async decrementNumberOfReplies(id: string): Promise<Topic> {
+    const topic = await this.findOne(id);
+    return this.update(id , { numberOfReplies: topic.numberOfReplies - 1 });
+  }
+
   async remove(id: string): Promise<Topic> {
     return await this.topicModel.findOneAndDelete({ _id: id }).exec();
   }

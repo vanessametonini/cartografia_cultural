@@ -19,7 +19,7 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
-  async findOne(id: string): Promise<User> {
+  async findOne(id: string): Promise<any> {
     return await this.userModel.findOne({ _id: id });
   }
 

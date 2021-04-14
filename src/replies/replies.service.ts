@@ -39,7 +39,10 @@ export class RepliesService {
 
   }
 
-  async remove(id: string): Promise<Reply> {
-    return await this.replyModel.findOneAndDelete({ _id: id }).exec();
+  async remove(id: string): Promise<any> {
+    const reply = await this.replyModel.findOneAndDelete({ _id: id }).exec();
+    const { topicId } =  reply;
+    await this.topicsService.decrementNumberOfReplies(topicId);
+    return reply;
   }
 }

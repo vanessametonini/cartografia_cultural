@@ -72,6 +72,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     this.server.emit('newReplyToClient', { 
       ...reply,
       user: {
+        id: reply.userId,
         firstName: user.firstName, 
         lastName: user.lastName,
         avatarId: user.avatarId
@@ -96,9 +97,10 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
 
   @SubscribeMessage('newLikeToServer')
   async likeMessage(client: Socket, payload) {
-    const likeId = await this.likesService.create(payload)
-    const like = {id: likeId.toString(), ...payload};
-    this.server.emit('newLikeToClient', like);
+    const { userId, topicId, replyId, createdAt } = payload;
+    const like = { userId, topicId, replyId, createdAt };
+    const likeId = await this.likesService.create(like);
+    this.server.emit('newLikeToClient', { id: likeId.toString(), ...payload});
   }
 
   @SubscribeMessage('removeLikeToServer')
@@ -106,7 +108,20 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     const likeRemoved = await this.likesService.remove(payload.id)
     this.server.emit('removeLikeToClient', {
       id: likeRemoved._id,
-      topicId: likeRemoved.topicId
+      topicId: likeRemoved.topicId,
+    });
+  }
+
+  @SubscribeMessage('deleteReplyToServer')
+  async deleteReplyMessage(client: Socket, payload) {
+    const replyRemoved = await this.repliesService.remove(payload.id)
+    this.server.emit('deleteReplyToClient', {
+      id: replyRemoved._id,
+      topicId: replyRemoved.topicId,
+      user: {
+        ...payload.user,
+        id: payload.userId
+      },
     });
   }
   
