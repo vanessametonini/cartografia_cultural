@@ -46,7 +46,9 @@ export class RejoindersService {
   }
 
   async remove(id: string): Promise<Rejoinder> {
-    return await this.rejoinderModel.findOneAndDelete({ _id: id }).exec();
+    const rejoinderDeleted = await this.rejoinderModel.findOneAndDelete({ _id: id }).exec();
+    this.topicsService.decrementNumberOfReplies(rejoinderDeleted.topicId, 1);
+    return rejoinderDeleted
   }
 
   async deleteMany(obj): Promise<any> {

@@ -119,4 +119,11 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     });
   }
 
+  @SubscribeMessage('deleteRejoinderToServer')
+  async deleteRejoinderMessage(client: Socket, payload) {
+    await this.rejoindersService.remove(payload.id);
+    this.server.emit('deleteRejoinderToClient', payload);
+  }
+
+
 }
