@@ -105,11 +105,8 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
 
   @SubscribeMessage('removeLikeToServer')
   async removeLikeMessage(client: Socket, payload) {
-    const likeRemoved = await this.likesService.remove(payload.id)
-    this.server.emit('removeLikeToClient', {
-      id: likeRemoved._id,
-      topicId: likeRemoved.topicId,
-    });
+    this.likesService.remove(payload.id);
+    this.server.emit('removeLikeToClient', payload);
   }
 
   @SubscribeMessage('deleteReplyToServer')
