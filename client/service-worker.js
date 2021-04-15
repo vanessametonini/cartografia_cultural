@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.9b8bcbdfa678c2a56d7a2e08c2f15b8f.js"
+  "/precache-manifest.f3780cea77982a19923cf23b3fc83c88.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "cartografia_da_cultura_cg"});
