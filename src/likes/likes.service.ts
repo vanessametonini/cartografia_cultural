@@ -28,11 +28,19 @@ export class LikesService {
     return await this.likeModel.find({ topicId: id });
   }
 
+  async findByReplyId(id: string): Promise<any> {
+    return await this.likeModel.find({ ReplyId: id });
+  }
+
   async update(id: string, updateLikeDto: UpdateLikeDto): Promise<Like> {
     return this.likeModel.findByIdAndUpdate({ _id: id }, updateLikeDto).exec();
   }
 
   async remove(id: string): Promise<any> {
     return await this.likeModel.findOneAndDelete({ _id: id }).exec();
+  }
+
+  async deleteMany(obj): Promise<any> {
+    return await this.likeModel.deleteMany(obj).exec();
   }
 }

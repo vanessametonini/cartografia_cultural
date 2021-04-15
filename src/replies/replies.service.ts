@@ -5,12 +5,16 @@ import { CreateReplyDto } from './dto/create-reply.dto';
 import { UpdateReplyDto } from './dto/update-reply.dto';
 import { Reply, ReplyDocument } from './schemas/reply.schema';
 import { TopicsService } from '../topics/topics.service';
+import { RejoindersService } from '../rejoinders/rejoinders.service';
+import { LikesService } from 'src/likes/likes.service';
 
 @Injectable()
 export class RepliesService {
   constructor(
     @InjectModel(Reply.name) private readonly replyModel: Model<ReplyDocument>,
     private readonly topicsService: TopicsService,
+    private readonly rejoindersService: RejoindersService,
+    private readonly likesService: LikesService,
   ) { }
 
   async create(createReplyDto: CreateReplyDto): Promise<Reply> {
@@ -40,9 +44,20 @@ export class RepliesService {
   }
 
   async remove(id: string): Promise<any> {
+    
     const reply = await this.replyModel.findOneAndDelete({ _id: id }).exec();
     const { topicId } =  reply;
-    await this.topicsService.decrementNumberOfReplies(topicId);
-    return reply;
+
+    const rejoidersArray = await this.rejoindersService.findByReplyId(id);
+    const rejoidersArrayIds = rejoidersArray.map((rejoinder) => rejoinder._id)
+    const deleteds = await this.rejoindersService.deleteMany({ replyId: reply._id });
+
+    const likesArray = await this.likesService.findByReplyId(id);
+    const likesArrayIds = likesArray.map((like) => like._id)
+    await this.likesService.deleteMany({ replyId: reply._id });
+
+    await this.topicsService.decrementNumberOfReplies(topicId, deleteds.deletedCount + 1);
+
+    return { reply, rejoidersArrayIds, likesArrayIds };
   }
 }

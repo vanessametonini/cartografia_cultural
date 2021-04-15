@@ -4,10 +4,14 @@ import { RepliesController } from './replies.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Reply, ReplySchema } from './schemas/reply.schema';
 import { TopicsModule } from '../topics/topics.module';
+import { RejoindersModule } from 'src/rejoinders/rejoinders.module';
+import { LikesModule } from 'src/likes/likes.module';
 
 @Module({
   imports: [
     TopicsModule,
+    RejoindersModule,
+    LikesModule,
     MongooseModule.forFeatureAsync([
       {
         name: Reply.name,

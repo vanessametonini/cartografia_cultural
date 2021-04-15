@@ -36,6 +36,10 @@ export class RejoindersService {
     return await this.rejoinderModel.find({ topicId: id });
   }
 
+  async findByReplyId(id: string): Promise<any> {
+    return await this.rejoinderModel.find({ replyId: id });
+  }
+
   async update(id: string, updateRejoinderDto: UpdateRejoinderDto): Promise<Rejoinder> {
     return this.rejoinderModel.findByIdAndUpdate({ _id: id }, updateRejoinderDto).exec();
 
@@ -43,6 +47,9 @@ export class RejoindersService {
 
   async remove(id: string): Promise<Rejoinder> {
     return await this.rejoinderModel.findOneAndDelete({ _id: id }).exec();
+  }
 
+  async deleteMany(obj): Promise<any> {
+    return await this.rejoinderModel.deleteMany(obj).exec();
   }
 }

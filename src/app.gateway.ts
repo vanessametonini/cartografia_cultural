@@ -26,7 +26,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     private readonly supportsService: SupportsService,
     private readonly rejoindersService: RejoindersService,
     private readonly likesService: LikesService,
-  ){}
+  ) { }
   @WebSocketServer() server: Server;
   private logger: Logger = new Logger('AppGateway');
 
@@ -45,12 +45,12 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
   @SubscribeMessage('newTopicToServer')
   async topicMessage(client: Socket, payload) {
     const topicId = await this.topicsService.create(payload)
-    const topic = {id: topicId.toString(), ...payload};
+    const topic = { id: topicId.toString(), ...payload };
     const user = await this.usersService.findOne(topic.userId)
-    this.server.emit('newTopicToClient', { 
+    this.server.emit('newTopicToClient', {
       ...topic,
       user: {
-        firstName: user.firstName, 
+        firstName: user.firstName,
         lastName: user.lastName,
         avatarId: user.avatarId
       },
@@ -60,20 +60,20 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
   @SubscribeMessage('newSupportToServer')
   async supportMessage(client: Socket, payload) {
     const supportId = await this.supportsService.create(payload)
-    const support = {id: supportId.toString(), ...payload};
+    const support = { id: supportId.toString(), ...payload };
     this.server.emit('newSupportToClient', support);
   }
 
   @SubscribeMessage('newReplyToServer')
   async replyMessage(client: Socket, payload) {
     const replyId = await this.repliesService.create(payload);
-    const reply = {id: replyId.toString(), ...payload};
+    const reply = { id: replyId.toString(), ...payload };
     const user = await this.usersService.findOne(reply.userId);
-    this.server.emit('newReplyToClient', { 
+    this.server.emit('newReplyToClient', {
       ...reply,
       user: {
         id: reply.userId,
-        firstName: user.firstName, 
+        firstName: user.firstName,
         lastName: user.lastName,
         avatarId: user.avatarId
       },
@@ -82,7 +82,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
 
   @SubscribeMessage('newRejoinderToServer')
   async rejoinderMessage(client: Socket, payload) {
-    const {  userId, topicId, replyId, content, createdAt } = payload;
+    const { userId, topicId, replyId, content, createdAt } = payload;
     const rejoinder = { userId, topicId, replyId, content, createdAt };
     const rejoinderId = await this.rejoindersService.create(rejoinder);
     this.server.emit('newRejoinderToClient', { id: rejoinderId.toString(), ...payload });
@@ -93,7 +93,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     const { userId, topicId, replyId, createdAt } = payload;
     const like = { userId, topicId, replyId, createdAt };
     const likeId = await this.likesService.create(like);
-    this.server.emit('newLikeToClient', { id: likeId.toString(), ...payload});
+    this.server.emit('newLikeToClient', { id: likeId.toString(), ...payload });
   }
 
   @SubscribeMessage('removeLikeToServer')
@@ -104,15 +104,19 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
 
   @SubscribeMessage('deleteReplyToServer')
   async deleteReplyMessage(client: Socket, payload) {
-    const replyRemoved = await this.repliesService.remove(payload.id)
+    const replyRemoved = await this.repliesService.remove(payload.id);
+    const { reply, rejoidersArrayIds, likesArrayIds } = replyRemoved;
     this.server.emit('deleteReplyToClient', {
-      id: replyRemoved._id,
-      topicId: replyRemoved.topicId,
+      id: reply._id,
+      topicId: reply.topicId,
+      rejoidersArrayIds,
+      likesArrayIds,
+      deletedCount: rejoidersArrayIds.length + 1,
       user: {
         ...payload.user,
         id: payload.userId
       },
     });
   }
-  
+
 }
