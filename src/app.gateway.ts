@@ -82,17 +82,10 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
 
   @SubscribeMessage('newRejoinderToServer')
   async rejoinderMessage(client: Socket, payload) {
-    const rejoinderId = await this.rejoindersService.create(payload);
-    const rejoinder = {id: rejoinderId.toString(), ...payload};
-    const user = await this.usersService.findOne(rejoinder.userId);
-    this.server.emit('newRejoinderToClient', { 
-      ...rejoinder,
-      user: {
-        firstName: user.firstName, 
-        lastName: user.lastName,
-        avatarId: user.avatarId
-      },
-    });
+    const {  userId, topicId, replyId, content, createdAt } = payload;
+    const rejoinder = { userId, topicId, replyId, content, createdAt };
+    const rejoinderId = await this.rejoindersService.create(rejoinder);
+    this.server.emit('newRejoinderToClient', { id: rejoinderId.toString(), ...payload });
   }
 
   @SubscribeMessage('newLikeToServer')
