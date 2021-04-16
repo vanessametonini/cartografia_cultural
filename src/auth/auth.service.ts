@@ -42,7 +42,12 @@ export class AuthService {
   async confirmEmail(confirmToken: string): Promise<any> {
     const result = await this.usersService.findOneAndUpdate({ confirmToken }, { confirmToken: null });
     if (!result) throw new NotFoundException('Token inválido');
-    return result;
+    result.id = result._id;
+    delete result._id;
+    return {
+      token: this.jwtService.sign({ id: result._id }),
+      user: result
+    };
   }
 
   

@@ -11,7 +11,7 @@ export class EmailsService {
   ) {}
 
   async sendUserConfirmation(user: CreateUserDto) {
-    const url = `${this.configService.get<string>('BASE_URL')}api/auth/confirm/${user.confirmToken}`;
+    const url = `${this.configService.get<string>('BASE_URL')}confirm-email/${user.confirmToken}`;
     await this.mailerService.sendMail({
       to: user.email,
       from: '"Support Cult" <support@cult.com>', // override default from
