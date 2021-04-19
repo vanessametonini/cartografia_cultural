@@ -6,6 +6,7 @@ import { FilesService } from './files.service';
 import { FileResponseVm } from './file-response-vm.model'
 import { MulterUtils } from './multer-utils.service';
 import { UploadTypesEnum } from './upload-types.enum';
+import { UsersService } from 'src/users/users.service';
 
 const ApiException = () => class {
     statusCode: HttpStatus;
@@ -16,7 +17,10 @@ const ApiException = () => class {
 @Controller('/attachment/files')
 @ApiTags('Attachments')
 export class FilesController {
-    constructor(private filesService: FilesService) { }
+    constructor(
+        private filesService: FilesService,
+        private readonly usersService: UsersService
+        ) { }
 
     @Post('')
     @ApiConsumes('multipart/form-data')
@@ -31,6 +35,15 @@ export class FilesController {
     @ApiBody({ description: 'Attachment Images' })
     @UseInterceptors(FilesInterceptor('file', +3, MulterUtils.getConfig(UploadTypesEnum.IMAGES)))
     uploadImages(@UploadedFiles() files) {
+        return files.map(file => file.id);
+    }
+
+    @Post('images/avatar/:id')
+    @ApiConsumes('multipart/form-data')
+    @ApiBody({ description: 'Attachment Images' })
+    @UseInterceptors(FilesInterceptor('file', +3, MulterUtils.getConfig(UploadTypesEnum.IMAGES)))
+    uploadAvatar(@Param('id') id: string, @UploadedFiles() files) {
+        this.usersService.update(id, { avatarId: files[0].id })
         return files.map(file => file.id);
     }
 

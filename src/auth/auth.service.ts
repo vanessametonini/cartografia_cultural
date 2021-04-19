@@ -16,8 +16,6 @@ export class AuthService {
   ) { }
 
   async signUp(createUserDto: CreateUserDto): Promise<any> {
-    // const userAlreadyExists = await this.usersService.findByEmail(createUserDto.email);
-    // if (userAlreadyExists) throw new ConflictException('User already exist');
     createUserDto.confirmToken = randomBytes(32).toString('hex');
     const user = await this.usersService.create(createUserDto);
     await this.emailservice.sendUserConfirmation(user);

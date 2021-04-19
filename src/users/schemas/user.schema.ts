@@ -11,7 +11,7 @@ export class User {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
   categoryId: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'fs.files' })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'fs.files' || null })
   avatarId: string;
 
   @Prop()
