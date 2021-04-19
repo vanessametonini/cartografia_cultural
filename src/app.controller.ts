@@ -6,6 +6,7 @@ import { AuthService } from './auth/auth.service';
 import { CreateUserDto } from './users/dto/create-user.dto';
 import { ConfigService } from '@nestjs/config'
 import { ChangePasswordDto } from './auth/dto/change-password.dto';
+import { UserExistGuard } from './auth/user-exists-guard';
 
 @Controller()
 export class AppController {
@@ -32,6 +33,7 @@ export class AppController {
     return req.user;
   }
 
+  @UseGuards(UserExistGuard)
   @Post('auth/signup')
   signup(@Body() createUserDto: CreateUserDto) {
     return this.authService.signUp(createUserDto)

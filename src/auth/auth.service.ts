@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
@@ -16,6 +16,8 @@ export class AuthService {
   ) { }
 
   async signUp(createUserDto: CreateUserDto): Promise<any> {
+    // const userAlreadyExists = await this.usersService.findByEmail(createUserDto.email);
+    // if (userAlreadyExists) throw new ConflictException('User already exist');
     createUserDto.confirmToken = randomBytes(32).toString('hex');
     const user = await this.usersService.create(createUserDto);
     await this.emailservice.sendUserConfirmation(user);
@@ -50,7 +52,7 @@ export class AuthService {
     };
   }
 
-  
+
   async sendRecoverPasswordEmail(email: string) {
     const user = await this.usersService.findByEmail(email);
     if (!user)
@@ -58,9 +60,9 @@ export class AuthService {
     const token = randomBytes(32).toString('hex');
     const userUpdated = await this.usersService.findOneAndUpdate(
       { email: user.email },
-      { recoverToken:  token}
+      { recoverToken: token }
     )
-    userUpdated.recoverToken = token;    
+    userUpdated.recoverToken = token;
     await this.emailservice.sendRecoverPassword(userUpdated);
   }
 
@@ -74,7 +76,7 @@ export class AuthService {
     await this.usersService.changePassword(id, password);
   }
 
-  async  resetPassword(recoverToken, changePasswordDto){
+  async resetPassword(recoverToken, changePasswordDto) {
     const user = await this.usersService.findOneByProp({ recoverToken });
     if (!user) throw new NotFoundException('Token inválido.');
     try {
@@ -82,7 +84,7 @@ export class AuthService {
     } catch (error) {
       throw error;
     }
-    
+
   }
 
 
