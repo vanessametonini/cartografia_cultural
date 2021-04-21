@@ -14,8 +14,8 @@ export class EmailsService {
     const url = `${this.configService.get<string>('BASE_URL')}confirm-email/${user.confirmToken}`;
     await this.mailerService.sendMail({
       to: user.email,
-      from: '"Support Cult" <support@cult.com>', // override default from
-      subject: 'Welcome to Nice App! Confirm your Email',
+      from: '"Cartografia da Cultura CG" <cartografiadaculturacg@gmail.com>', // override default from
+      subject: 'Bem vindo(a)! Confirme seu cadastro!',
       template: 'confirmation', // `.hbs` extension is appended automatically
       context: { // ✏️ filling curly brackets with content
         name: user.firstName,
@@ -29,13 +29,13 @@ export class EmailsService {
     const url = `${this.configService.get<string>('BASE_URL')}reset-password/${user.recoverToken}`;
     await this.mailerService.sendMail({
       to: user.email,
-      from: '"Support Cult" <support@cult.com>', // override default from
-      subject: 'Welcome to Nice App! Recover your password!',
+      from: '"Cartografia da Cultura CG" <cartografiadaculturacg@gmail.com>', // override default from
+      subject: 'Recupere sua senha',
       template: 'recover', // `.hbs` extension is appended automatically
       context: { // ✏️ filling curly brackets with content
         name: user.firstName,
         url,
-        label:'Confirmar'
+        label:'Recuperar Senha'
       },
     })
   }
