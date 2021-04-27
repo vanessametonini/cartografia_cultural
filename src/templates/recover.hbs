@@ -64,6 +64,12 @@
         /* -------------------------------------
           HEADER, FOOTER, MAIN
       ------------------------------------- */
+
+        .logo {
+            width: 142px;
+            float: right;
+        }
+
         .main {
             background: #ffffff;
             border-radius: 3px;
@@ -133,6 +139,11 @@
         /* -------------------------------------
           BUTTONS
       ------------------------------------- */
+         table.btn {
+            max-width: 120px;
+            margin: 0 auto;
+        }
+
         .btn {
             box-sizing: border-box;
             width: 100%;
@@ -149,11 +160,11 @@
             text-align: center;
         }
         .btn a {
-            background-color: #ffffff;
-            border: solid 1px #3498db;
+            background-color: #000000;
+            border: solid 1px #111111;
             border-radius: 5px;
             box-sizing: border-box;
-            color: #3498db;
+            color: #ffffff;
             cursor: pointer;
             display: inline-block;
             font-size: 14px;
@@ -164,11 +175,11 @@
             text-transform: capitalize;
         }
         .btn-primary table td {
-            background-color: #3498db;
+            background-color: #000000;
         }
         .btn-primary a {
-            background-color: #3498db;
-            border-color: #3498db;
+            background-color: #000000;
+            border-color: #111111;
             color: #ffffff;
         }
         /* -------------------------------------
@@ -320,7 +331,15 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td>
-                                            <p>Olá</p>
+                                            <img class="logo" src="{{logoUrl}}" alt="Cartografia da Cultura CG">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>Olá, {{name}}</p>
+                                            <p>
+                                                Clique no botão para redefinir sua senha.
+                                            </p>
                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0"
                                                 class="btn btn-primary">
                                                 <tbody>
@@ -339,9 +358,6 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <p>
-                                                Clique no botão acima para redefinir sua senha.
-                                            </p>
                                         </td>
                                     </tr>
                                 </table>

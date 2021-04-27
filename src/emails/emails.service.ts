@@ -1,7 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from '../users/dto/create-user.dto';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class EmailsService {
@@ -9,6 +9,8 @@ export class EmailsService {
     private mailerService: MailerService,
     private configService: ConfigService
   ) {}
+
+  private logoUrl = `https://www.cartografiadaculturacg.com.br/logo-cartografia.png`;
 
   async sendUserConfirmation(user: CreateUserDto) {
     const url = `${this.configService.get<string>('BASE_URL')}confirm-email/${user.confirmToken}`;
@@ -18,9 +20,10 @@ export class EmailsService {
       subject: 'Bem vindo(a)! Confirme seu cadastro!',
       template: 'confirmation', // `.hbs` extension is appended automatically
       context: { // ✏️ filling curly brackets with content
-        name: user.firstName,
+        name: `${user.firstName} ${user.lastName}`,
         url,
-        label:'Confirmar'
+        label:'Confirmar',
+        logoUrl: this.logoUrl
       },
     })
   }
@@ -33,9 +36,10 @@ export class EmailsService {
       subject: 'Recupere sua senha',
       template: 'recover', // `.hbs` extension is appended automatically
       context: { // ✏️ filling curly brackets with content
-        name: user.firstName,
+        name: `${user.firstName} ${user.lastName}`,
         url,
-        label:'Recuperar Senha'
+        label:'Recuperar Senha',
+        logoUrl: this.logoUrl
       },
     })
   }
