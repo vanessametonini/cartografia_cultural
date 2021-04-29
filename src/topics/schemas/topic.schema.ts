@@ -4,7 +4,9 @@ import * as mongoose from 'mongoose';
 
 export type TopicDocument = Topic & Document;
 
-@Schema()
+@Schema({
+    timestamps: true
+})
 export class Topic {
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
     categoryId: string;
@@ -33,8 +35,6 @@ export class Topic {
     @Prop()
     views: number;
 
-    @Prop()
-    createdAt: Date;
 }
 
 export const TopicSchema = SchemaFactory.createForClass(Topic);

@@ -4,7 +4,8 @@ import * as mongoose from 'mongoose';
 export type UserDocument = User & Document;
 
 @Schema({
-  writeConcern: {}
+  writeConcern: {},
+  timestamps: true
 })
 export class User {
 

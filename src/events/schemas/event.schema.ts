@@ -4,7 +4,8 @@ import * as mongoose from 'mongoose';
 export type EventDocument = Event & Document;
 
 @Schema({
-  writeConcern: {}
+  writeConcern: {},
+  timestamps: true
 })
 export class Event {
     

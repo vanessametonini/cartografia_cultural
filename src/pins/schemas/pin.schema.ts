@@ -4,7 +4,9 @@ import * as mongoose from 'mongoose';
 
 export type PinDocument = Pin & Document;
 
-@Schema()
+@Schema({
+  timestamps: true
+})
 export class Pin {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
   categoryId: string;
