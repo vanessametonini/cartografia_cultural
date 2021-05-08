@@ -31,7 +31,7 @@ export class AppSeed {
 
     @Command({
         command: 'create:seeds',
-        describe: 'create a app seeds',
+        describe: 'Initial data.',
         autoExit: true
     })
     async create() {
