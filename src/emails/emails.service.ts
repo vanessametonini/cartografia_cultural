@@ -10,7 +10,7 @@ export class EmailsService {
     private configService: ConfigService
   ) {}
 
-  private logoUrl = `https://www.cartografiadaculturacg.com.br/logo-cartografia.svg`;
+  private logoUrl = `https://www.cartografiadaculturacg.com.br/logo-cartografia.png`;
 
   async sendUserConfirmation(user: CreateUserDto) {
     const url = `${this.configService.get<string>('BASE_URL')}confirm-email/${user.confirmToken}`;
