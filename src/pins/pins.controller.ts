@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
 import { PinsService } from './pins.service';
 import { CreatePinDto } from './dto/create-pin.dto';
-import { UpdatePinDto } from './dto/update-pin.dto';
 import { CreatelocationDto } from './dto/create-location.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ValidateUserGuard } from 'src/auth/validate-user.guard';
 
 @Controller('pins')
 export class PinsController {
@@ -28,9 +29,10 @@ export class PinsController {
     return this.pinsService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePinDto: UpdatePinDto) {
-    return this.pinsService.update(id, updatePinDto);
+  @UseGuards(JwtAuthGuard, ValidateUserGuard)
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updatedPin: CreatePinDto) {
+    return this.pinsService.update(id, updatedPin);    
   }
 
   @Delete(':id')

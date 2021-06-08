@@ -3,10 +3,12 @@ import { PinsService } from './pins.service';
 import { PinsController } from './pins.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Pin, PinSchema } from './schemas/pin.schema';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   imports: [
     HttpModule,
+    UsersModule,
     MongooseModule.forFeatureAsync([
       {
         name: Pin.name,
