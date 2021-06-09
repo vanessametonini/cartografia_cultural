@@ -4,7 +4,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreatelocationDto } from './dto/create-location.dto';
 import { CreatePinDto } from './dto/create-pin.dto';
-import { UpdatePinDto } from './dto/update-pin.dto';
 import { Pin, PinDocument } from './schemas/pin.schema';
 
 @Injectable()
@@ -62,8 +61,8 @@ export class PinsService {
     return await this.pinModel.findOne({ _id: id });
   }
 
-  async update(id: string, updatePinDto: UpdatePinDto): Promise<Pin> {
-    return this.pinModel.findByIdAndUpdate({ _id: id }, updatePinDto).exec();
+  async update(id: string, updatedPin: CreatePinDto): Promise<Pin> {
+    return this.pinModel.findByIdAndUpdate({ _id: id }, updatedPin, { new: true }).exec()
   }
 
   async remove(id: string): Promise<Pin> {
