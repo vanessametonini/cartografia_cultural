@@ -4,12 +4,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreatelocationDto } from './dto/create-location.dto';
 import { CreatePinDto } from './dto/create-pin.dto';
+import { DeletedPin, DeletedPinDocument } from './schemas/deleted-pins.schema';
 import { Pin, PinDocument } from './schemas/pin.schema';
 
 @Injectable()
 export class PinsService {
   constructor(
     @InjectModel(Pin.name) private pinModel: Model<PinDocument>,
+    @InjectModel(DeletedPin.name) private deletedPinModel: Model<DeletedPinDocument>,
     private httpService: HttpService,
     private configService: ConfigService
   ) { }
@@ -66,6 +68,41 @@ export class PinsService {
   }
 
   async remove(id: string): Promise<Pin> {
-    return await this.pinModel.findOneAndDelete({ _id: id }).exec();
+    const pin = await this.pinModel.findOne({ _id: id });
+
+    let userId = pin.userId;
+
+    const data = {
+      imageIds: pin.imageIds ? pin.imageIds : undefined,
+      categoryId: pin.categoryId ? pin.categoryId : undefined,
+      title: pin.title ? pin.title : undefined,
+      email: pin.email ? pin.email : undefined,
+      street: pin.street ? pin.street : undefined,
+      number: pin.number ? pin.number : undefined,
+      neighborhood: pin.neighborhood ? pin.neighborhood : undefined,
+      city: pin.city ? pin.city : undefined,
+      zipcode: pin.zipcode ? pin.zipcode : undefined,
+      description: pin.description ? pin.description : undefined,
+      link: pin.link ? pin.link : undefined,
+      twitter: pin.twitter ? pin.twitter : undefined,
+      whatsapp: pin.whatsapp ? pin.whatsapp : undefined,
+      lat: pin.lat ? pin.lat : undefined,
+      long: pin.long ? pin.long : undefined,
+    }
+
+    await this.deletedPinModel.create({ userId, data });
+    await pin.delete();
+    
+    return pin;
+    
+  }
+
+  findAllDeletedPins(): Promise<DeletedPin[]> {
+    return this.deletedPinModel.find().exec();
+  }
+
+  findDeletedPinsByUserId(id: string): Promise<DeletedPin[]> {
+    return this.deletedPinModel.find({ userId : id }).exec();
+
   }
 }

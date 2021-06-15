@@ -4,6 +4,7 @@ import { PinsController } from './pins.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Pin, PinSchema } from './schemas/pin.schema';
 import { UsersModule } from 'src/users/users.module';
+import { DeletedPin, DeletedPinSchema } from './schemas/deleted-pins.schema';
 
 @Module({
   imports: [
@@ -21,6 +22,19 @@ import { UsersModule } from 'src/users/users.module';
             }
           });
           return PinSchema;
+        },
+      },
+      {
+        name: DeletedPin.name,
+        useFactory: () => {
+          DeletedPinSchema.set('toJSON', {
+            transform: function (doc, ret, options) {
+              ret.id = ret._id;
+              delete ret._id;
+              delete ret.__v;
+            }
+          });
+          return DeletedPinSchema;
         },
       },
     ])
