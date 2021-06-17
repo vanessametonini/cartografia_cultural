@@ -35,8 +35,19 @@ export class PinsController {
     return this.pinsService.update(id, updatedPin);    
   }
 
+  @UseGuards(JwtAuthGuard, ValidateUserGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.pinsService.remove(id);
   }
+
+  // @Get('deleted/all')
+  //   findAllDeletedPins() {
+  //     return this.pinsService.findAllDeletedPins();
+  //   }
+  
+  // @Get('deleted/:id')
+  // findDeletedPinsByUserId(@Param('id') id: string) {
+  //   return this.pinsService.findDeletedPinsByUserId(id);
+  // }
 }
