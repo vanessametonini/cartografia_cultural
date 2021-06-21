@@ -63,7 +63,18 @@ export class PinsService {
     return await this.pinModel.findOne({ _id: id });
   }
 
-  async update(id: string, updatedPin: CreatePinDto): Promise<Pin> {
+  async update(id: string, updatedPin: CreatePinDto) {
+    const {street, city, number} = updatedPin;
+    const address = {
+      street,
+      city,
+      county: "campo grande",
+      state: "mato grosso do sul",
+      number,
+      postalcode: updatedPin.zipcode
+    }
+    updatedPin = {...updatedPin, ...(await this.getLocation(address))};
+    
     return this.pinModel.findByIdAndUpdate({ _id: id }, updatedPin, { new: true }).exec()
   }
 
