@@ -43,7 +43,8 @@ export class FilesController {
     @ApiBody({ description: 'Attachment Images' })
     @UseInterceptors(FilesInterceptor('file', +3, MulterUtils.getConfig(UploadTypesEnum.IMAGES)))
     uploadAvatar(@Param('id') id: string, @UploadedFiles() files) {
-        this.usersService.update(id, { avatarId: files[0].id })
+        const avatarId = files[0].id
+        this.usersService.update(id, { ...avatarId  })
         return files.map(file => file.id);
     }
 
