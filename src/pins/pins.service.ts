@@ -14,18 +14,22 @@ export class PinsService {
     @InjectModel(DeletedPin.name) private deletedPinModel: Model<DeletedPinDocument>,
     private httpService: HttpService,
     private configService: ConfigService
-  ) { }
+    ) { }
+
+    private authorizedCity = this.configService.get<string>('AUTHORIZED_CITY');
+    private authorizedState = this.configService.get<string>('AUTHORIZED_STATE');
 
   async create(createPinDto: CreatePinDto): Promise<any> {
     const {street, city, number} = createPinDto;
     const address = {
       street,
       city,
-      county: "campo grande",
-      state: "mato grosso do sul",
+      county: this.authorizedCity,
+      state: this.authorizedState,
       number,
       postalcode: createPinDto.zipcode
     }
+
     createPinDto = {...createPinDto, ...(await this.getLocation(address))};
     const createdPin = new this.pinModel(createPinDto);
     const {id , lat , long} = (await createdPin.save()).toJSON();
@@ -68,14 +72,14 @@ export class PinsService {
     const address = {
       street,
       city,
-      county: "campo grande",
-      state: "mato grosso do sul",
+      county: this.authorizedCity,
+      state: this.authorizedState,
       number,
       postalcode: updatedPin.zipcode
     }
-    updatedPin = {...updatedPin, ...(await this.getLocation(address))};
     
-    return this.pinModel.findByIdAndUpdate({ _id: id }, updatedPin, { new: true }).exec()
+    updatedPin = {...updatedPin, ...(await this.getLocation(address))};
+    return this.pinModel.findByIdAndUpdate({ _id: id }, updatedPin, { new: true }).exec();
   }
 
   async remove(id: string): Promise<Pin> {
