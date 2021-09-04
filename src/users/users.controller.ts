@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Delete, UseGuards, Put } from '@nes
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
-import { UserGuard } from 'src/auth/user.guard';
+import { ValidateUserGuard } from './validate-user.guard';
 
 @Controller('users')
 export class UsersController {
@@ -24,7 +24,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard, UserGuard)
+  @UseGuards(JwtAuthGuard, ValidateUserGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body() updatedUser: CreateUserDto) {
     return this.usersService.update(id, updatedUser);

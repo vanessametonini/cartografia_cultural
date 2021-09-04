@@ -2,13 +2,13 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { UsersService } from "src/users/users.service";
 
 @Injectable()
-export class UserGuard implements CanActivate {
+export class ValidateUserGuard implements CanActivate {
     constructor(private readonly usersService: UsersService) { }
     async canActivate(context: ExecutionContext): Promise<boolean>{
         const request = context.switchToHttp().getRequest(); 
-        const user = await this.usersService.findOne(request.user);
+        const userId = request.user;
         
-        if (user.id !== request.params.id) throw new UnauthorizedException();
+        if (userId !== request.params.id) throw new UnauthorizedException();
         return true;
     }
 }
