@@ -6,7 +6,7 @@ import {
   OnGatewayConnection,
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
-import { Logger } from '@nestjs/common';
+import { Logger, UseGuards } from '@nestjs/common';
 import { Socket, Server } from 'socket.io';
 import { RepliesService } from './replies/replies.service';
 import { TopicsService } from './topics/topics.service';
@@ -14,9 +14,7 @@ import { UsersService } from './users/users.service';
 import { SupportsService } from './supports/supports.service';
 import { RejoindersService } from './rejoinders/rejoinders.service';
 import { LikesService } from './likes/likes.service';
-
-
-
+import { WsGuard } from './auth/ws.guard';
 @WebSocketGateway()
 export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   constructor(
@@ -42,11 +40,13 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     this.logger.log(`Client connected: ${client.id}`);
   }
 
+  @UseGuards(WsGuard)
   @SubscribeMessage('newTopicToServer')
   async topicMessage(client: Socket, payload) {
-    const topicId = await this.topicsService.create(payload)
+    const topicId = await this.topicsService.create(payload);
     const topic = { id: topicId.toString(), ...payload };
-    const user = await this.usersService.findOne(topic.userId)
+    const user = await this.usersService.findOne(topic.userId);
+
     this.server.emit('newTopicToClient', {
       ...topic,
       user: {
@@ -55,6 +55,14 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
         avatarId: user.avatarId
       },
     });
+  }
+
+  @UseGuards(WsGuard)
+  @SubscribeMessage('updateTopicToServer')
+  async topicUpdateMessage(client: Socket, payload) {
+    const id = payload.id;
+    const updatedTopic = await this.topicsService.update(id, {...payload})
+    this.server.emit('updateTopicToClient', updatedTopic);
   }
 
   @SubscribeMessage('newSupportToServer')
