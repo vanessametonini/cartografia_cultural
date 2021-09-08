@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { topics } from 'src/seeds/seeds.topics';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
 import { Topic, TopicDocument } from './schemas/topic.schema';
@@ -25,8 +24,8 @@ export class TopicsService {
     return await this.topicModel.findOne({ _id: id });
   }
 
-  async update(id: string, updateTopicDto: UpdateTopicDto): Promise<Topic> {
-    return this.topicModel.findByIdAndUpdate({ _id: id }, updateTopicDto).exec();
+  async update(id: string, updatedTopic: UpdateTopicDto): Promise<Topic> {
+    return this.topicModel.findByIdAndUpdate({ _id: id }, updatedTopic, { new: true }).exec();
   }
 
   async incrementNumberOfSupports(id: string, status: boolean): Promise<Topic> {

@@ -3,7 +3,7 @@ import { PinsService } from './pins.service';
 import { CreatePinDto } from './dto/create-pin.dto';
 import { CreatelocationDto } from './dto/create-location.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ValidateUserGuard } from 'src/auth/validate-user.guard';
+import { ValidatePinUserGuard } from 'src/pins/validate-pin-user.guard';
 import { AddressDelimitationPipe } from './address-delimitation.pipe';
 
 @Controller('pins')
@@ -31,13 +31,13 @@ export class PinsController {
     return this.pinsService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard, ValidateUserGuard)
+  @UseGuards(JwtAuthGuard, ValidatePinUserGuard)
   @Put(':id')
   update(@Param('id') id: string, @Body(new AddressDelimitationPipe()) updatedPin: CreatePinDto) {
     return this.pinsService.update(id, updatedPin);    
   }
 
-  @UseGuards(JwtAuthGuard, ValidateUserGuard)
+  @UseGuards(JwtAuthGuard, ValidatePinUserGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.pinsService.remove(id);
