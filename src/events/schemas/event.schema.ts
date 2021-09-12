@@ -12,7 +12,7 @@ export class Event {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
   categoryId: string;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', immutable: true })
   userId: string;
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'fs.files'}] })
