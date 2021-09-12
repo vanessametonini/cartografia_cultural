@@ -3,13 +3,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
+import { DeletedTopic, DeletedTopicDocument } from './schemas/deleted-topics.schema';
 import { Topic, TopicDocument } from './schemas/topic.schema';
 
 @Injectable()
 export class TopicsService {
   constructor(
-    @InjectModel(Topic.name) private readonly topicModel: Model<TopicDocument>
-  ) { }
+    @InjectModel(Topic.name) private readonly topicModel: Model<TopicDocument>,
+    @InjectModel(DeletedTopic.name) private deletedTopicModel: Model<DeletedTopicDocument>
+    ) { }
 
   async create(createTopicDto: CreateTopicDto): Promise<string> {
     const createdTopic = new this.topicModel(createTopicDto)
@@ -48,7 +50,26 @@ export class TopicsService {
   }
 
   async remove(id: string): Promise<Topic> {
-    return await this.topicModel.findOneAndDelete({ _id: id }).exec();
+    const topic = await this.topicModel.findOne({ _id: id });
+    
+    const userId = topic.userId;
+    
+    const data = {
+      categoryId: topic.categoryId ? topic.categoryId : undefined,
+      userId: topic.userId ? topic.userId : undefined,
+      categoriesTagged: topic.categoriesTagged ? topic.categoriesTagged : undefined,
+      content: topic.content ? topic.content : undefined,
+      title: topic.title ? topic.title : undefined,
+      positiveSupports: topic.positiveSupports ? topic.positiveSupports : undefined,
+      negativeSupports: topic.negativeSupports ? topic.negativeSupports : undefined,
+      numberOfReplies: topic.numberOfReplies ? topic.numberOfReplies : undefined,
+      views: topic.views ? topic.views : undefined,
+    }
+
+    await this.deletedTopicModel.create({ userId, data });
+    await topic.delete();
+
+    return topic;
   }
   
 }
