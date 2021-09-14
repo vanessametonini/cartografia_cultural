@@ -3,6 +3,7 @@ import { TopicsService } from './topics.service';
 import { TopicsController } from './topics.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Topic, TopicSchema } from './schemas/topic.schema';
+import { DeletedTopic, DeletedTopicSchema } from './schemas/deleted-topics.schema';
 
 @Module({
   imports: [
@@ -18,6 +19,19 @@ import { Topic, TopicSchema } from './schemas/topic.schema';
             }
           });
           return TopicSchema;
+        },
+      },
+      {
+        name: DeletedTopic.name,
+        useFactory: () => {
+          DeletedTopicSchema.set('toJSON', {
+            transform: function (doc, ret, options) {
+              ret.id = ret._id;
+              delete ret._id;
+              delete ret.__v;
+            }
+          });
+          return DeletedTopicSchema;
         },
       },
     ])

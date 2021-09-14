@@ -65,6 +65,13 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     this.server.emit('updateTopicToClient', updatedTopic);
   }
 
+  @UseGuards(WsGuard)
+  @SubscribeMessage('deleteTopicToServer')
+  async removeTopicMessage(client: Socket, payload) {
+    const removedTopic = await this.topicsService.remove(payload.id);
+    this.server.emit('deleteTopicToClient', removedTopic);
+  }
+
   @SubscribeMessage('newSupportToServer')
   async supportMessage(client: Socket, payload) {
     const supportId = await this.supportsService.create(payload)
