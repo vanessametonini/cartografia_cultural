@@ -4,7 +4,7 @@ import { CreatePinDto } from './dto/create-pin.dto';
 import { CreatelocationDto } from './dto/create-location.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ValidatePinUserGuard } from 'src/pins/validate-pin-user.guard';
-import { AddressDelimitationPipe } from './address-delimitation.pipe';
+import { AddressDelimitationPipe } from 'src/address-delimitation.pipe';
 
 @Controller('pins')
 export class PinsController {
