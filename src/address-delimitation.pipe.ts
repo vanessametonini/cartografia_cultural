@@ -9,7 +9,7 @@ export class AddressDelimitationPipe implements PipeTransform {
       const city = value.city;
       
       if (city !== authorizedCity) {
-        throw new BadRequestException({error: 'Cidade inválida', message:`Não é possível cadastrar um PIN fora dos limites de ${authorizedCity}` });
+        throw new BadRequestException({error: 'Cidade inválida', message:`Não foi possível realizar seu cadastro. Insira um CEP dentro dos limites de ${authorizedCity}.` });
       }
 
       return value;

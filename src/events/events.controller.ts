@@ -3,6 +3,7 @@ import { EventsService } from './events.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ValidateEventUserGuard } from './validate-event-user.guard';
+import { AddressDelimitationPipe } from 'src/address-delimitation.pipe';
 
 @Controller('events')
 export class EventsController {
@@ -10,7 +11,7 @@ export class EventsController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createEventDto: CreateEventDto) {
+  create(@Body(new AddressDelimitationPipe()) createEventDto: CreateEventDto) {
     return this.eventsService.create(createEventDto);
   }
 
@@ -26,7 +27,7 @@ export class EventsController {
 
   @UseGuards(JwtAuthGuard, ValidateEventUserGuard)
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateEvent: CreateEventDto) {
+  update(@Param('id') id: string, @Body(new AddressDelimitationPipe()) updateEvent: CreateEventDto) {
     return this.eventsService.update(id, updateEvent);
   }
 
