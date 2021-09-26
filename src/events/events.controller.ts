@@ -1,14 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreateEventDto } from './dto/create-event.dto';
-import { UpdateEventDto } from './dto/update-event.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ValidateEventUserGuard } from './validate-event-user.guard';
+import { AddressDelimitationPipe } from 'src/address-delimitation.pipe';
 
 @Controller('events')
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createEventDto: CreateEventDto) {
+  create(@Body(new AddressDelimitationPipe()) createEventDto: CreateEventDto) {
     return this.eventsService.create(createEventDto);
   }
 
@@ -22,9 +25,10 @@ export class EventsController {
     return this.eventsService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
-    return this.eventsService.update(id, updateEventDto);
+  @UseGuards(JwtAuthGuard, ValidateEventUserGuard)
+  @Put(':id')
+  update(@Param('id') id: string, @Body(new AddressDelimitationPipe()) updateEvent: CreateEventDto) {
+    return this.eventsService.update(id, updateEvent);
   }
 
   @Delete(':id')
