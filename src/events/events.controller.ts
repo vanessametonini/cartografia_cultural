@@ -31,6 +31,7 @@ export class EventsController {
     return this.eventsService.update(id, updateEvent);
   }
 
+  @UseGuards(JwtAuthGuard, ValidateEventUserGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.eventsService.remove(id);
