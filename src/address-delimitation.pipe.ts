@@ -8,7 +8,7 @@ export class AddressDelimitationPipe implements PipeTransform {
       const authorizedCity = this.configService.get<string>('AUTHORIZED_CITY');
       const city = value.city;
       
-      if (city !== authorizedCity) {
+      if (city !== authorizedCity && city !== '') {
         throw new BadRequestException({error: 'Cidade inválida', message:`Não foi possível realizar seu cadastro. Insira um CEP dentro dos limites de ${authorizedCity}.` });
       }
 
