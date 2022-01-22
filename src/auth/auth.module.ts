@@ -17,7 +17,7 @@ import { EmailsModule } from 'src/emails/emails.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('supersecret'),
-        signOptions: { expiresIn: '2592000s' },
+        signOptions: { expiresIn: '86400s' },
       }),
       inject: [ConfigService],
     })
